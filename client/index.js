@@ -18,18 +18,16 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isClicked: false };
+        this.handleClick = this.handleClick.bind(this);
     }
-    handleClick() {
-        this.setState(function(state, props) {
-            return {
-                isClicked: !state.isClicked
-            }
-        });
-    }
+
+    handleClick = () => this.setState(({ isClicked }) => ({ isClicked : !isClicked }));
+
     render() {
+        console.log(this.state.isClicked);
         return e(
         'input',
-        { placeholder: this.props.placeholder, className: 'component' , type: 'text', style: { width: '100%', backgroundColor: !this.state.isClicked ? 'black' : 'white', color: !this.state.isClicked ? 'white' : 'black', border: 'none', lineHeight: '30px' }, onClick: () => this.handleClick() },
+        { placeholder: this.props.placeholder, className: 'component' , type: 'text', style: { width: '100%', backgroundColor: !this.state.isClicked ? 'black' : 'white', color: !this.state.isClicked ? 'white' : 'black', border: 'none', lineHeight: '30px' }, onClick: this.handleClick },
         );
     }
 }
