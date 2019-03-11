@@ -18,13 +18,11 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isClicked: false };
-        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick = () => this.setState(({ isClicked }) => ({ isClicked : !isClicked }));
 
     render() {
-        console.log(this.state.isClicked);
         return e(
         'input',
         { placeholder: this.props.placeholder, className: 'component' , type: 'text', style: { width: '100%', backgroundColor: !this.state.isClicked ? 'black' : 'white', color: !this.state.isClicked ? 'white' : 'black', border: 'none', lineHeight: '30px' }, onClick: this.handleClick },
@@ -32,7 +30,7 @@ class Search extends React.Component {
     }
 }
 
-class AppCpmponent extends React.PureComponent {
+class App extends React.PureComponent {
 
     render() {
         return  e(
@@ -44,4 +42,4 @@ class AppCpmponent extends React.PureComponent {
     }
 }
 
-ReactDOM.render(React.createElement(AppCpmponent), document.getElementById('root'));
+ReactDOM.render(React.createElement(App), document.getElementById('root'));
