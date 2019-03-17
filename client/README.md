@@ -1,0 +1,1 @@
+to build a project you need to run 'npm run build' in the console 
