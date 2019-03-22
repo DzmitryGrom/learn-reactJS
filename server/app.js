@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/', function(req, res){
     res.sendFile('index.html');

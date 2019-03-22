@@ -1,1 +1,1 @@
-# learn-reactJS
+to start a project you need to run 'node app.js' in the console ./server

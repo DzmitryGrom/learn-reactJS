@@ -1,0 +1,58 @@
+.btn_white {
+  background-color: white;
+  color: pink;
+}
+.btn_pink {
+  background-color: pink;
+  color: white;
+}
+.movie-list {
+  background: gainsboro;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie-item {
+  height: 400px;
+  flex: 0 0 300px;
+  margin: 20px;
+}
+.movie-item__img {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.movie-item__info {
+  padding: 20px 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.movie-item__info > div {
+  flex: 1 0 70%;
+}
+.movie-item__info > span {
+  flex: 0 0 10%;
+  height: 16px;
+}
+.movie-item__year {
+  display: inline-block;
+  padding: 2px 5px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+.movie-item__title {
+  margin: 0 0 10px;
+}
+.movie-item__genre {
+  margin: 0;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/*# sourceMappingURL=style.css.map*/
