@@ -1,16 +1,12 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Series from '../series-route';
+import Single from '../single-route';
+import './component.less';
 
-import Button from '../button';
-import MovieList from '../movie-list';
-
-import './component.less'
-
-class App extends PureComponent {
-  render() {
-    return(
-      <MovieList className="movie-list" />
-    )
-  }
-}
-
-export default App;
+const App = () => (
+    <Switch>
+      <Route exact path="/" component={Series} />
+      <Route path="/series/:id" component={Single} />
+    </Switch>
+);

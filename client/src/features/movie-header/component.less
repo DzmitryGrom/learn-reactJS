@@ -1,0 +1,23 @@
+.header {
+  position: relative;
+  flex: 0 1 100%;
+  min-height: 100px;
+  padding: 20px 50px 50px;
+  z-index: 1;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &:before{
+    background: url(https://i.playground.ru/i/user/450622/upload/c106887c5443ad2fa5ae17fb4a262e07/em0rwc.jpg) center center;
+  }
+  &:after {
+    background: black;
+    opacity: 0.8;
+  }
+}

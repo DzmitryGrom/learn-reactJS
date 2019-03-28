@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import './component.less'
-import MovieItem from '../movie-item'
-import getFilms from'./utils';
+import { Link } from 'react-router-dom';
+import styles from './component.less';
+import MovieItem from '../movie-item';
+import getFilms from './utils';
 
-class MovieList extends React.Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {films: null};
-  }
-  
-  componentDidMount() {
-    this.setState(({ films }) => ({ films : getFilms() }));
-  };
-  
-  render() {
-    return(
-        <div className="movie-list">{
-          this.state.films ? this.state.films.map((item) =>(  <MovieItem key={item.id} {...item}/> )): 'load'
-        }
-        </div>
-    )
-  }
+class MovieList extends Component {
+    state = {
+        films: null,
+    };
+
+    componentDidMount() {
+        const films = getFilms();
+        this.setState({ films });
+    }
+
+    render() {
+        const { films } = this.state;
+
+        return (
+            <div className={styles.movieList}>
+                {
+                    films ? films.map(item => (<Link className={styles.movieList__href} key={item.id} to={`/series/${item.id}`}><MovieItem {...item} /></Link>)) : 'load'
+                }
+            </div>
+        );
+    }
 }
+
+MovieList.propTypes = {
+    films: PropTypes.shape({
+        image: PropTypes.string,
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        year: PropTypes.string,
+        id: PropTypes.number,
+    }),
+};
+
+MovieList.defaultProps = {
+    films: {},
+};
 
 export default MovieList;
