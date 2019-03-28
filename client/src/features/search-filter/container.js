@@ -5,12 +5,11 @@ import FilterComponent from './component';
 
 class FilterContainer extends Component {
     state = {
-        valueInput: false,
-
+      valueInput: false,
     };
 
     componentDidMount() {
-        this.textInput.focus();
+      this.textInput.focus();
     }
 
     getInputRef = (node) => { this.textInput = node; };
@@ -18,13 +17,13 @@ class FilterContainer extends Component {
     handleClick = () => this.setState({ valueInput: this.textInput.value });
 
     render() {
-        const { valueInput } = this.state;
-        if (valueInput.length > 15) {
-            throw new Error('I crashed!');
-        }
-        return (
-            <FilterComponent getInputRef={this.getInputRef} onEventClick={this.handleClick} />
-        );
+      const { valueInput } = this.state;
+      if (valueInput.length > 15) {
+        throw new Error('I crashed!');
+      }
+      return (
+        <FilterComponent getInputRef={this.getInputRef} onEventClick={this.handleClick} />
+      );
     }
 }
 

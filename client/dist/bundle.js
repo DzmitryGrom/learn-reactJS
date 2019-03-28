@@ -31484,7 +31484,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _series_route__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../movie-series */ "./features/movie-series/index.js");
+/* harmony import */ var _series_route__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../movie-search */ "./features/movie-search/index.js");
 /* harmony import */ var _single_route__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../movie-details */ "./features/movie-details/index.js");
 /* harmony import */ var _component_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./component.less */ "./features/app/component.less");
 /* harmony import */ var _component_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_component_less__WEBPACK_IMPORTED_MODULE_4__);
@@ -32313,7 +32313,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./features/series-route/container.js":
 /*!********************************************!*\
-  !*** ./features/movie-series/container.js ***!
+  !*** ./features/movie-search/container.js ***!
   \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -32389,14 +32389,14 @@ function (_Component) {
 
 /***/ "./features/series-route/index.js":
 /*!****************************************!*\
-  !*** ./features/movie-series/index.js ***!
+  !*** ./features/movie-search/index.js ***!
   \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container */ "./features/movie-series/container.js");
+/* harmony import */ var _container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container */ "./features/movie-search/container.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _container__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
