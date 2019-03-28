@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './component.less';
 
-const MovieLogo = () => (
+const Logo = () => (
     <span className={styles.logo}>netflixroulette</span>
 );
 
-export default MovieLogo;
+export default Logo;

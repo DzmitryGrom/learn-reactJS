@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
@@ -6,30 +6,17 @@ import styles from './component.less';
 import MovieItem from '../movie-item';
 import getFilms from './utils';
 
-class MovieList extends Component {
-    state = {
-        films: null,
-    };
 
-    componentDidMount() {
-        const films = getFilms();
-        this.setState({ films });
-    }
 
-    render() {
-        const { films } = this.state;
+const MovieListComponent = ({ })  => (
+    <div className={styles.movieList}>
+        {
+            films ? films.map(item => (<Link className={styles.movieList__href} key={item.id} to={`/series/${item.id}`}><MovieItem {...item} /></Link>)) : 'load'
+        }
+    </div>
+);
 
-        return (
-            <div className={styles.movieList}>
-                {
-                    films ? films.map(item => (<Link className={styles.movieList__href} key={item.id} to={`/series/${item.id}`}><MovieItem {...item} /></Link>)) : 'load'
-                }
-            </div>
-        );
-    }
-}
-
-MovieList.propTypes = {
+MovieListComponent.propTypes = {
     films: PropTypes.shape({
         image: PropTypes.string,
         title: PropTypes.string,
@@ -39,8 +26,8 @@ MovieList.propTypes = {
     }),
 };
 
-MovieList.defaultProps = {
+MovieListComponent.defaultProps = {
     films: {},
 };
 
-export default MovieList;
+export default MovieListComponent;

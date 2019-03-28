@@ -1,12 +1,12 @@
 import React from 'react';
 
 import styles from './component.less';
-import MovieLogo from '../movie-logo';
+import Logo from '../logo';
 
-const MovieFooter = () => (
+const Footer = () => (
     <div className={styles.footer}>
-        <MovieLogo />
+        <Logo />
     </div>
 );
 
-export default MovieFooter;
+export default Footer;

@@ -1,35 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ErrorBoundary extends Component {
-    state = {
-        error: null, errorInfo: null
-    };
 
-    componentDidCatch(error, errorInfo) {
-        this.setState({
-            error,
-            errorInfo,
-        });
-    }
+const ErrorBoundaryComponent = ({ error, errorInfo })  => (
+    <div>
+        <h2 style={{ color: 'red' }}>Something went wrong.</h2>
+        <details style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
+            {error && error.toString()}
+            <br />
+            {errorInfo.componentStack}
+        </details>
+    </div>
+);
 
-    render() {
-        const { errorInfo, error } = this.state;
-        const { children } = this.props;
 
-        if (this.state.errorInfo) {
-            return (
-                <div>
-                    <h2 style={{ color: 'red' }}>Something went wrong.</h2>
-                    <details style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
-                        {error && error.toString()}
-                        <br />
-                        {errorInfo.componentStack}
-                    </details>
-                </div>
-            );
-        }
-        return children;
-    }
-}
+ErrorBoundaryComponent.propTypes = {
 
-export default ErrorBoundary;
+};
+
+ErrorBoundaryComponent.defaultProps = {
+
+};
+
+export default ErrorBoundaryComponent;

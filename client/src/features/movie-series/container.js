@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import MovieHeader from '../movie-header';
-import MovieFooter from '../movie-footer';
+import MovieHeader from '../header';
+import MovieFooter from '../footer';
 import MovieList from '../movie-list';
 
 class Series extends Component {
