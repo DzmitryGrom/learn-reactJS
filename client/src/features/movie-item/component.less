@@ -1,6 +1,7 @@
-.movie-item {
+.movieItem {
   height: 400px;
   flex: 0 0 300px;
+  color: gray;
   margin: 20px;
   &__img {
     width: 100%;
@@ -22,6 +23,9 @@
       height: 16px;
     }
   }
+  &__year, &__title {
+    color: slategray;
+  }
   &__year {
     display: inline-block;
     padding: 2px 5px;
@@ -33,5 +37,6 @@
   }
   &__genre {
     margin: 0;
+    color: lightslategray;
   }
 }

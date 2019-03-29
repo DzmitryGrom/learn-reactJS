@@ -1,0 +1,40 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  &__label {
+    color: white;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 15px;
+    margin: 50px 0 15px;
+  }
+  &__input {
+    flex: 0 1 100%;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid deeppink;
+    background-color: black;
+    color: white;
+    &:focus {
+      outline: none;
+      background-color: white;
+      color: black;
+    }
+  }
+  &__buttons {
+    display: flex;
+    width: 205px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__buttonsLabel {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: white;
+  }
+}

@@ -1,16 +1,13 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-import Button from '../button';
-import MovieList from '../movie-list';
+import MovieSearch from '../movie-search';
+import ErrorBoundary from '../error-boundary';
+import './component.less';
 
-import './component.less'
-
-class App extends PureComponent {
-  render() {
-    return(
-      <MovieList className="movie-list" />
-    )
-  }
-}
+const App = () => (
+  <ErrorBoundary>
+    <MovieSearch />
+  </ErrorBoundary>
+);
 
 export default App;
