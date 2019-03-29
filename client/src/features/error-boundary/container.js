@@ -29,11 +29,7 @@ class ErrorBoundaryContainer extends Component {
 }
 
 ErrorBoundaryContainer.propTypes = {
-  children: PropTypes.element,
-};
-
-ErrorBoundaryContainer.defaultProps = {
-  children: null,
+  children: PropTypes.element.isRequired,
 };
 
 export default ErrorBoundaryContainer;
