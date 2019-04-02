@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ErrorBoundaryComponent = ({ error, errorInfo }) => (
-  <div>
+  <div id='errorBoundary'>
     <h2 style={{ color: 'red' }}>Something went wrong.</h2>
     <details style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
       {error && error.toString()}
@@ -14,13 +14,13 @@ const ErrorBoundaryComponent = ({ error, errorInfo }) => (
 );
 
 ErrorBoundaryComponent.propTypes = {
-  error: PropTypes.string,
-  errorInfo: PropTypes.string,
+  error: PropTypes.object,
+  errorInfo: PropTypes.object,
 };
 
 ErrorBoundaryComponent.defaultProps = {
-  error: '',
-  errorInfo: '',
+  error: null,
+  errorInfo: null,
 };
 
 export default ErrorBoundaryComponent;

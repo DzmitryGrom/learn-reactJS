@@ -1,3 +1,7 @@
 # dependencies
 /node_modules
 .idea/
+/coverage
+jest.config.js
+/build
+/dist

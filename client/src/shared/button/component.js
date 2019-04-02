@@ -6,12 +6,13 @@ import classNames from 'classnames';
 import styles from './component.less';
 
 const Button = ({
-  modifier, text, size, onButtonClick,
+  modifier, text, size, onButtonClick, selector,
 }) => (
   <input
     onClick={onButtonClick}
     type="button"
     value={text}
+    id={selector}
     className={classNames(styles.btn,
       modifier === 'pink' && styles.btn_pink,
       modifier === 'gray' && styles.btn_gray,
@@ -25,6 +26,7 @@ Button.propTypes = {
   text: PropTypes.string,
   size: PropTypes.string,
   onButtonClick: PropTypes.func,
+  selector: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -32,6 +34,7 @@ Button.defaultProps = {
   text: '',
   size: '',
   onButtonClick: null,
+  selector: null,
 };
 
 export default Button;

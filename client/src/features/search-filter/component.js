@@ -19,7 +19,7 @@ const FilterComponent = ({ getInputRef, onEventClick }) => (
       <Button text="title" modifier="white" />
       <Button text="genre" modifier="gray" />
     </div>
-    <Button text="search" modifier="pink" size="big" onButtonClick={onEventClick} />
+    <Button selector="btnSearch" text="search" modifier="pink" size="big" onButtonClick={onEventClick} />
   </div>
 
 );

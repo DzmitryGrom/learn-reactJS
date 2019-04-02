@@ -24,12 +24,12 @@ const Header = () => (
     </div>
     <div className={styles.header__info}>
       <div>
-        <span className={styles.header__value}>7 movies found</span>
+        <span id="movieValue" className={styles.header__value}>7 movies found</span>
       </div>
       <div>
-        <span className={styles.header__value}>Sort by</span>
-        <span className={styles.header__value}>release date</span>
-        <span className={styles.header__rating}>rating</span>
+        <span id="btnSortBy" className={styles.header__value}>Sort by</span>
+        <span id="btnRelease" className={styles.header__value}>release date</span>
+        <span id="btnRating" className={styles.header__rating}>rating</span>
       </div>
     </div>
   </div>
