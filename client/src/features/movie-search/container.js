@@ -8,13 +8,13 @@ class SeriesContainer extends Component {
     state = {};
 
     render() {
-      return (
-        <>
-          <MovieHeader />
-          <MovieList />
-          <MovieFooter />
-        </>
-      );
+        return (
+            <>
+            <MovieHeader />
+            <MovieList />
+            <MovieFooter />
+            </>
+        );
     }
 }
 
