@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests search-filter render  component with empty redux 1`] = `
+<Connect(FilterContainer)>
+  <FilterContainer
+    searchByGenre={[Function]}
+    searchByTitle={[Function]}
+    setSearchText={[Function]}
+    sortByRating={[Function]}
+    sortByRelease={[Function]}
+  >
+    <FilterComponent
+      getInputRef={[Function]}
+      onButtonClick={[Function]}
+      onButtonClickGenre={[Function]}
+      onButtonClickRating={[Function]}
+      onButtonClickRelease={[Function]}
+      onButtonClickTitle={[Function]}
+    >
+      <div
+        className="filter"
+      >
+        <div
+          className="filter__top"
+        >
+          <span
+            className="filter__label"
+          >
+            Find your movie
+          </span>
+          <input
+            className="filter__input"
+            placeholder="Type your value"
+            type="text"
+          />
+          <div
+            className="filter__buttons"
+          >
+            <span
+              className="filter__buttonsLabel"
+            >
+              search by
+            </span>
+            <input
+              id="btnTitle"
+              name="search"
+              onClick={[Function]}
+              type="radio"
+            />
+            <label
+              className="filter__btn"
+              htmlFor="btnTitle"
+            >
+              title
+            </label>
+            <input
+              id="btnGenre"
+              name="search"
+              onClick={[Function]}
+              type="radio"
+            />
+            <label
+              className="filter__btn"
+              htmlFor="btnGenre"
+            >
+              genre
+            </label>
+          </div>
+          <Button
+            modifier="pink"
+            onButtonClick={[Function]}
+            selector="btnSearch"
+            size="big"
+            text="search"
+          >
+            <input
+              className="btn btn_pink btn_big"
+              id="btnSearch"
+              onClick={[Function]}
+              type="button"
+              value="search"
+            />
+          </Button>
+        </div>
+        <div
+          className="filter__btns"
+        >
+          <span
+            className="filter__value"
+            id="btnSortBy"
+          >
+            Sort by
+          </span>
+          <input
+            id="btnRelease"
+            name="sort"
+            onClick={[Function]}
+            type="radio"
+          />
+          <label
+            className="filter__value"
+            htmlFor="btnRelease"
+          >
+            release date
+          </label>
+          <input
+            id="btnRating"
+            name="sort"
+            onClick={[Function]}
+            type="radio"
+          />
+          <label
+            className="filter__value"
+            htmlFor="btnRating"
+          >
+            rating
+          </label>
+        </div>
+      </div>
+    </FilterComponent>
+  </FilterContainer>
+</Connect(FilterContainer)>
+`;

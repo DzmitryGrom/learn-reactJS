@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests list  render  component with mockStoreInitialized 1`] = `
+<Connect(MovieListComponent)>
+  <MovieListComponent
+    dispatch={[Function]}
+    films={Array []}
+  >
+    <div
+      className="movieList"
+    />
+  </MovieListComponent>
+</Connect(MovieListComponent)>
+`;
+
+exports[`tests list  render  component with mockStoreWithDates 1`] = `
+<Connect(MovieListComponent)>
+  <MovieListComponent
+    dispatch={[Function]}
+    films={
+      Array [
+        Object {
+          "budget": 0,
+          "genres": Array [
+            "string",
+          ],
+          "id": 222,
+          "overview": "string",
+          "poster_path": "string",
+          "release_date": "string",
+          "revenue": 0,
+          "runtime": 0,
+          "tagline": "string",
+          "title": "string",
+          "vote_average": 0,
+          "vote_count": 0,
+        },
+      ]
+    }
+  >
+    <div
+      className="movieList"
+    >
+      <MovieItem
+        budget={0}
+        genres={
+          Array [
+            "string",
+          ]
+        }
+        id={222}
+        key="222"
+        overview="string"
+        poster_path="string"
+        release_date="string"
+        revenue={0}
+        runtime={0}
+        tagline="string"
+        title="string"
+        vote_average={0}
+        vote_count={0}
+      >
+        <div
+          className="movieItem"
+        >
+          <div
+            className="movieItem__img"
+            style={
+              Object {
+                "backgroundImage": "url(string)",
+              }
+            }
+          />
+          <div
+            className="movieItem__info"
+          >
+            <div>
+              <h3
+                className="movieItem__title"
+              >
+                string
+              </h3>
+              <h4
+                className="movieItem__genre"
+              >
+                string
+              </h4>
+            </div>
+            <span
+              className="movieItem__year"
+            >
+              stri
+            </span>
+          </div>
+        </div>
+      </MovieItem>
+    </div>
+  </MovieListComponent>
+</Connect(MovieListComponent)>
+`;

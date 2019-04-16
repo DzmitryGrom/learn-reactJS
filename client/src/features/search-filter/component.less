@@ -1,0 +1,90 @@
+.filter {
+  input[type=radio]{
+    display: none;
+    & + label {
+      cursor: pointer;
+    } 
+    &[name="sort"]{
+      &:checked + label {
+        color: deeppink;
+      }
+    }
+    &[name="search"] {
+      &:checked + label {
+        background-color: white;
+        color: deeppink;
+      }
+    }
+   
+  }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__btns {
+    position: absolute;
+    z-index: 2;
+    right: 50px;
+    bottom: -35px;
+  }
+  &__btn {
+    background-color: slategray;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 2px;
+  }
+  &__value {
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  &__rating, &__release {
+    cursor: pointer;
+  }
+  &__rating {
+ 
+    font-weight: bold;
+    margin-left: 50px;
+  }
+  &__label {
+    color: white;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 15px;
+    margin: 50px 0 15px;
+  }
+  &__input {
+    flex: 0 1 100%;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid deeppink;
+    background-color: black;
+    color: white;
+    &:focus {
+      outline: none;
+      background-color: white;
+      color: black;
+    }
+  }
+  &__buttons {
+    display: flex;
+    width: 205px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__buttonsLabel {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: white;
+  }
+}
