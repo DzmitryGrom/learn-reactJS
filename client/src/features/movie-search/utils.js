@@ -8,7 +8,7 @@ export const getFilms = async () => {
 
 export const getFilmsWithParams = async (filter, val) => {
     let urlOne = filter.sortBy ? `sortBy=${filter.sortBy}&sortOrder=desc` : null,
-        urlTwo = filter.searchBy && val !== '' ? `search=${val}&searchBy=${filter.searchBy}` : null,
+        urlTwo = filter.searchBy ? `search=${val}&searchBy=${filter.searchBy}` : null,
         url;
     if (urlOne) {
         url = urlOne;

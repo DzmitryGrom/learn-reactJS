@@ -1,19 +1,14 @@
 import * as type from '../../core/store/constants';
 
 const initialState = {
-    searchBy: '',
+    searchBy: 'title',
     sortBy: '',
-    text: ''
+    text: 'vote_average'
 }
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case type.SEARCH_MOVIES_BY_TITLE:
-            return {
-                ...state,
-                searchBy: action.payload
-            }
-        case type.SEARCH_MOVIES_BY_GENRE:
+        case type.SEARCH_MOVIES:
             return {
                 ...state, 
                 searchBy: action.payload
@@ -28,11 +23,14 @@ export default function reducer(state = initialState, action) {
                 ...state, 
                 sortBy: action.payload
             }
+
         case type.SEARCH_TEXT:
             return {
                 ...state, 
                 text: action.payload
             }
+
+
         default:
             return state
     }

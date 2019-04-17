@@ -9,6 +9,7 @@ import FilterComponent from './component';
 class FilterContainer extends Component {
   state = {
     valueInput: false,
+    searchName: false,
   };
 
   componentDidMount() {
@@ -23,21 +24,16 @@ class FilterContainer extends Component {
     this.setState({
       valueInput: this.textInput.value,
     });
-    const { setSearchText } = this.props;
+    const { setSearchText, setSearch } = this.props;
+    const { searchName } = this.state;
     if (this.textInput.value !== '') {
       setSearchText(this.textInput.value);
-      this.textInput.value = '';
+      searchName && setSearch(searchName);
     }
   }
 
-  handleButtonClickTitle = () => {
-    const { setSearchByTitle } = this.props;
-    setSearchByTitle();
-  }
-
-  handleButtonClickGenre = () => {
-    const { setSearchByGenre } = this.props;
-    setSearchByGenre();
+  handleButtonClickSearch = (event) => {
+    this.setState({ searchName: event.target.title });
   }
 
   handleButtonClickRelease = () => {
@@ -59,8 +55,7 @@ class FilterContainer extends Component {
       <FilterComponent
         getInputRef={this.getInputRef}
         onButtonClick={this.handleButtonClick}
-        onButtonClickGenre={this.handleButtonClickGenre}
-        onButtonClickTitle={this.handleButtonClickTitle}
+        onButtonClickSearch={this.handleButtonClickSearch}
         onButtonClickRelease={this.handleButtonClickRelease}
         onButtonClickRating={this.handleButtonClickRating}
       />
@@ -70,8 +65,7 @@ class FilterContainer extends Component {
 
 FilterContainer.propTypes = {
   setSearchText: PropTypes.func.isRequired,
-  setSearchByTitle: PropTypes.func.isRequired,
-  setSearchByGenre: PropTypes.func.isRequired,
+  setSearch: PropTypes.func.isRequired,
   setSortByRelease: PropTypes.func.isRequired,
   setSortByRating: PropTypes.func.isRequired,
 };

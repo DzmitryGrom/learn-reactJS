@@ -20,10 +20,9 @@ class SeriesContainer extends Component {
   async componentDidUpdate(prevProps) {
     const { filter, setMovies } = this.props;
     if (filter !== prevProps.filter) {
-      if (filter.text.length !== '') {
+      if (filter.text !== '') {
         const { data } = await getFilmsWithParams(filter, filter.text);
         setMovies(data.data);
-        filter.text = '';
       }
     }
   }

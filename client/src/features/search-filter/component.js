@@ -5,8 +5,7 @@ import Button from '../../shared/button';
 import styles from './component.less';
 
 const FilterComponent = ({
-  getInputRef, onButtonClick, onButtonClickRelease,
-  onButtonClickRating, onButtonClickTitle, onButtonClickGenre,
+  getInputRef, onButtonClick, onButtonClickRelease, onButtonClickRating, onButtonClickSearch,
 }) => (
   <div className={styles.filter}>
     <div className={styles.filter__top}>
@@ -20,11 +19,11 @@ const FilterComponent = ({
       <div className={styles.filter__buttons}>
         <span className={styles.filter__buttonsLabel}>search by</span>
         <label htmlFor="btnTitle">
-          <input type="radio" id="btnTitle" name="search" onClick={onButtonClickTitle} />
+          <input defaultChecked type="radio" id="btnTitle" name="search" title="title" onClick={onButtonClickSearch} />
           <span className={styles.filter__btn}>title</span>
         </label>
         <label htmlFor="btnGenre">
-          <input type="radio" id="btnGenre" name="search" onClick={onButtonClickGenre} />
+          <input type="radio" id="btnGenre" name="search" title="genres" onClick={onButtonClickSearch} />
           <span className={styles.filter__btn}>genre</span>
         </label>
       </div>
@@ -37,7 +36,7 @@ const FilterComponent = ({
         <span className={styles.filter__value}>release date</span>
       </label>
       <label htmlFor="btnRating">
-        <input type="radio" id="btnRating" name="sort" onClick={onButtonClickRating} />
+        <input defaultChecked type="radio" id="btnRating" name="sort" onClick={onButtonClickRating} />
         <span className={styles.filter__value}>rating</span>
       </label>
     </div>
@@ -47,9 +46,8 @@ const FilterComponent = ({
 FilterComponent.propTypes = {
   getInputRef: PropTypes.func.isRequired,
   onButtonClick: PropTypes.func.isRequired,
-  onButtonClickTitle: PropTypes.func.isRequired,
-  onButtonClickGenre: PropTypes.func.isRequired,
   onButtonClickRating: PropTypes.func.isRequired,
+  onButtonClickSearch: PropTypes.func.isRequired,
   onButtonClickRelease: PropTypes.func.isRequired,
 };
 

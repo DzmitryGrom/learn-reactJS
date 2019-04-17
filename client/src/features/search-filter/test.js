@@ -46,29 +46,22 @@ describe('tests search-filter', () => {
         expect(component.find('[type="radio"]')).toHaveLength(4);
         expect(wrapper.props().store.getState().filter).toBeFalsy();
     });
-    it('test action setSearchByTitle', () => {
-            const expectedAction = {
-                type: type.SEARCH_MOVIES_BY_TITLE,
-                payload: type.SEARCH_BY_TITLE
+    it('test action setSearch', () => {
+            const expectedActionTitle = {
+                type: type.SEARCH_MOVIES,
+                payload: 'title'
+            },
+            expectedActionGenre = {
+                type: type.SEARCH_MOVIES,
+                payload: 'genres'
             },
             badExpectedAction = {
-                type: type.SEARCH_MOVIES_BY_TITLE + 'some',
-                payload: type.SEARCH_BY_TITLE + 'some'
+                type: type.SEARCH_MOVIES + 'some',
+                payload: 'some'
             };
-        expect(action.setSearchByTitle()).toEqual(expectedAction);
-        expect(action.setSearchByTitle()).not.toEqual(badExpectedAction);
-    });
-    it('test action setSearchByGenre', () => {
-            const expectedAction = {
-                type: type.SEARCH_MOVIES_BY_GENRE,
-                payload: type.SEARCH_BY_GENRE
-            },
-            badExpectedAction = {
-                type: type.SEARCH_MOVIES_BY_GENRE + 'some',
-                payload: type.SEARCH_BY_TITLE + 'some'
-            };
-        expect(action.setSearchByGenre()).toEqual(expectedAction);
-        expect(action.setSearchByGenre()).not.toEqual(badExpectedAction);
+        expect(action.setSearch('title')).toEqual(expectedActionTitle);
+        expect(action.setSearch('genres')).toEqual(expectedActionGenre);
+        expect(action.setSearch()).not.toEqual(badExpectedAction);
     });
     it('test action setSortByRelease', () => {
             const expectedAction = {
@@ -110,15 +103,15 @@ describe('tests search-filter', () => {
     it('tests reducers', () => {
         expect(
             reducer([], {
-                type: type.SEARCH_MOVIES_BY_TITLE,
-                payload: type.SEARCH_BY_TITLE
+                type: type.SEARCH_MOVIES,
+                payload: 'title'
             })
         ).toEqual({ "searchBy": "title" });
 
         expect(
             reducer([], {
-                type: type.SEARCH_MOVIES_BY_GENRE,
-                payload: type.SEARCH_BY_GENRE
+                type: type.SEARCH_MOVIES,
+                payload: 'genres'
             })
         ).toEqual({ "searchBy": "genres" });
 

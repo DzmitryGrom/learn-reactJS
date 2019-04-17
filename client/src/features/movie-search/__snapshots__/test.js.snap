@@ -26,8 +26,7 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 1`] = `
             </Logo>
             <Connect(FilterContainer)>
               <FilterContainer
-                setSearchByGenre={[Function]}
-                setSearchByTitle={[Function]}
+                setSearch={[Function]}
                 setSearchText={[Function]}
                 setSortByRating={[Function]}
                 setSortByRelease={[Function]}
@@ -35,10 +34,9 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 1`] = `
                 <FilterComponent
                   getInputRef={[Function]}
                   onButtonClick={[Function]}
-                  onButtonClickGenre={[Function]}
                   onButtonClickRating={[Function]}
                   onButtonClickRelease={[Function]}
-                  onButtonClickTitle={[Function]}
+                  onButtonClickSearch={[Function]}
                 >
                   <div
                     className="filter"
@@ -68,9 +66,11 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 1`] = `
                           htmlFor="btnTitle"
                         >
                           <input
+                            defaultChecked={true}
                             id="btnTitle"
                             name="search"
                             onClick={[Function]}
+                            title="title"
                             type="radio"
                           />
                           <span
@@ -86,6 +86,7 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 1`] = `
                             id="btnGenre"
                             name="search"
                             onClick={[Function]}
+                            title="genres"
                             type="radio"
                           />
                           <span
@@ -139,6 +140,7 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 1`] = `
                         htmlFor="btnRating"
                       >
                         <input
+                          defaultChecked={true}
                           id="btnRating"
                           name="sort"
                           onClick={[Function]}
@@ -226,8 +228,7 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 2`] = `
             </Logo>
             <Connect(FilterContainer)>
               <FilterContainer
-                setSearchByGenre={[Function]}
-                setSearchByTitle={[Function]}
+                setSearch={[Function]}
                 setSearchText={[Function]}
                 setSortByRating={[Function]}
                 setSortByRelease={[Function]}
@@ -235,10 +236,9 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 2`] = `
                 <FilterComponent
                   getInputRef={[Function]}
                   onButtonClick={[Function]}
-                  onButtonClickGenre={[Function]}
                   onButtonClickRating={[Function]}
                   onButtonClickRelease={[Function]}
-                  onButtonClickTitle={[Function]}
+                  onButtonClickSearch={[Function]}
                 >
                   <div
                     className="filter"
@@ -268,9 +268,11 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 2`] = `
                           htmlFor="btnTitle"
                         >
                           <input
+                            defaultChecked={true}
                             id="btnTitle"
                             name="search"
                             onClick={[Function]}
+                            title="title"
                             type="radio"
                           />
                           <span
@@ -286,6 +288,7 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 2`] = `
                             id="btnGenre"
                             name="search"
                             onClick={[Function]}
+                            title="genres"
                             type="radio"
                           />
                           <span
@@ -339,6 +342,7 @@ exports[`tests movieSearch  render  component with mockStoreWithDates 2`] = `
                         htmlFor="btnRating"
                       >
                         <input
+                          defaultChecked={true}
                           id="btnRating"
                           name="sort"
                           onClick={[Function]}

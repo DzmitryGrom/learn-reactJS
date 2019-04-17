@@ -21,8 +21,7 @@ exports[`tests header render  component 1`] = `
         </Logo>
         <Connect(FilterContainer)>
           <FilterContainer
-            setSearchByGenre={[Function]}
-            setSearchByTitle={[Function]}
+            setSearch={[Function]}
             setSearchText={[Function]}
             setSortByRating={[Function]}
             setSortByRelease={[Function]}
@@ -30,10 +29,9 @@ exports[`tests header render  component 1`] = `
             <FilterComponent
               getInputRef={[Function]}
               onButtonClick={[Function]}
-              onButtonClickGenre={[Function]}
               onButtonClickRating={[Function]}
               onButtonClickRelease={[Function]}
-              onButtonClickTitle={[Function]}
+              onButtonClickSearch={[Function]}
             >
               <div
                 className="filter"
@@ -63,9 +61,11 @@ exports[`tests header render  component 1`] = `
                       htmlFor="btnTitle"
                     >
                       <input
+                        defaultChecked={true}
                         id="btnTitle"
                         name="search"
                         onClick={[Function]}
+                        title="title"
                         type="radio"
                       />
                       <span
@@ -81,6 +81,7 @@ exports[`tests header render  component 1`] = `
                         id="btnGenre"
                         name="search"
                         onClick={[Function]}
+                        title="genres"
                         type="radio"
                       />
                       <span
@@ -134,6 +135,7 @@ exports[`tests header render  component 1`] = `
                     htmlFor="btnRating"
                   >
                     <input
+                      defaultChecked={true}
                       id="btnRating"
                       name="sort"
                       onClick={[Function]}

@@ -1,12 +1,8 @@
 import * as type from '../../core/store/constants';
 
-export const setSearchByTitle = () => ({
-    type: type.SEARCH_MOVIES_BY_TITLE,
-    payload: type.SEARCH_BY_TITLE
-})
-export const setSearchByGenre = () => ({
-    type: type.SEARCH_MOVIES_BY_GENRE,
-    payload: type.SEARCH_BY_GENRE
+export const setSearch = text => ({
+    type: type.SEARCH_MOVIES,
+    payload: text
 })
 export const setSortByRelease = () => ({
     type: type.SORT_MOVIES_BY_RELEASE,
