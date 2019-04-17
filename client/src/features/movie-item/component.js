@@ -4,32 +4,39 @@ import PropTypes from 'prop-types';
 import styles from './component.less';
 
 const MovieItem = ({
-  image, title, year, genre,
+  poster_path, title, release_date, genres,
 }) => (
   <div className={styles.movieItem}>
-    <div style={{ backgroundImage: `url(${image})` }} className={styles.movieItem__img} />
+    <div style={{ backgroundImage: `url(${poster_path})` }} className={styles.movieItem__img} />
     <div className={styles.movieItem__info}>
       <div>
         <h3 className={styles.movieItem__title}>{title}</h3>
-        <h4 className={styles.movieItem__genre}>{genre}</h4>
+        <h4 className={styles.movieItem__genre}>
+          { genres && (genres.length > 1 ? genres.map(item => (
+            <span key={item}>
+              {item}
+              {' '}
+            </span>
+          )) : genres) }
+        </h4>
       </div>
-      <span className={styles.movieItem__year}>{year}</span>
+      <span className={styles.movieItem__year}>{release_date && release_date.substring(0, 4)}</span>
     </div>
   </div>
 );
 
 MovieItem.propTypes = {
-  image: PropTypes.string,
+  poster_path: PropTypes.string,
   title: PropTypes.string,
-  year: PropTypes.string,
-  genre: PropTypes.string,
+  release_date: PropTypes.string,
+  genres: PropTypes.arrayOf(PropTypes.string),
 };
 
 MovieItem.defaultProps = {
-  image: null,
+  poster_path: null,
   title: null,
-  year: null,
-  genre: null,
+  release_date: null,
+  genres: null,
 };
 
 export default MovieItem;

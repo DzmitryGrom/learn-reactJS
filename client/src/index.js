@@ -1,19 +1,24 @@
 import React from 'react';
+import '@babel/polyfill';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-
+import { PersistGate } from 'redux-persist/integration/react';
 import App from './features/app';
+import Loader from './features/loader';
 
-function filmList(state = {}) {
-    return state;
-}
+import createStore from './core/store/store';
 
-const store = createStore(filmList);
-
+const { persistor, store } = createStore();
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-document.getElementById('root'),
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      {(bootstrapped) => {
+        if (bootstrapped) {
+          return <App />;
+        }
+        return <Loader />;
+      }}
+    </PersistGate>
+  </Provider>,
+  document.getElementById('root'),
 );

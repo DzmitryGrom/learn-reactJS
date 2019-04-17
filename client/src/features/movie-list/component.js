@@ -1,29 +1,29 @@
+import { connect } from 'react-redux';
 import React from 'react';
-
 import PropTypes from 'prop-types';
+import { getVisibleFilms } from '../../core/store/selectors';
+
 import styles from './component.less';
 import MovieItem from '../movie-item';
 
-const MovieListComponent = ({ films }) => (
-  <div className={styles.movieList}>
-    {
-      films ? films.map(item => (<MovieItem key={item.id} {...item} />)) : 'load'
-    }
-  </div>
-);
+const MovieListComponent = (props) => {
+  const { films } = props;
+  return (
+    <div className={styles.movieList}>
+      {
+        films ? films.map(item => (<MovieItem key={item.id} {...item} />)) : 'load'
+      }
+    </div>
+  );
+};
 
 MovieListComponent.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    id: PropTypes.number,
-  })),
+  films: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-MovieListComponent.defaultProps = {
-  films: null,
-};
 
-export default MovieListComponent;
+const mapStateToProps = state => ({
+  films: getVisibleFilms(state),
+});
+
+export default connect(mapStateToProps)(MovieListComponent);

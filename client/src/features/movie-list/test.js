@@ -1,65 +1,45 @@
 import React from 'react';
-import { render, mount, shallow } from 'enzyme';
-import List from './component';
-import Item from '../movie-item';
+import { mount } from 'enzyme';
+import List from './index';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
+const mockStore = configureStore(),
+    mockStoreInitialized = mockStore({films: []}),
+    mockStoreWithDates = mockStore({ 
+        films: [ 
+            {
+                "id": 222,
+                "title": "string",
+                "tagline": "string",
+                "vote_average": 0,
+                "vote_count": 0,
+                "release_date": "string",
+                "poster_path": "string",
+                "overview": "string",
+                "budget": 0,
+                "revenue": 0,
+                "runtime": 0,
+                "genres": [
+                "string"
+                ]
+            }    
+        ]
+    });
 
-describe('tests List', () => {
-  it('render empty', () => {
-    const filmsArr = [],
-          component = render(<List films={filmsArr}/>);
-    
+describe('tests list ', () => {
+  it('render  component with mockStoreInitialized', () => {
+    const wrapper = mount(<Provider store={mockStoreInitialized}><List/></Provider>),
+        component = wrapper.find(List);
     expect(component).toMatchSnapshot();
     expect(component.find('.movieList')).toBeTruthy();
     expect(component.find('.movieItem')).toHaveLength(0);
   });
-  
-  it('render with two components', () => {
-    const filmsArr = [
-        {
-          image: 'https://klike.net/uploads/posts/2018-06/1528452924_1.jpg',
-          title: 'Minions',
-          genre: 'Comedy',
-          year: '2015',
-          id: 8080
-        },
-        {
-          image: 'https://upload.wikimedia.org/wikipedia/en/a/a9/Christopher_Robin_poster.png',
-          title: 'Christopher Robin',
-          genre: 'some',
-          year: '2018',
-          id: 1000000
-        },
-    ],
-    component = shallow(<List  films={filmsArr}/>);
+  it('render  component with mockStoreWithDates', () => {
+    const wrapper = mount(<Provider store={mockStoreWithDates}><List/></Provider>),
+        component = wrapper.find(List);
     expect(component).toMatchSnapshot();
-  });
-  
-  it('render with three components', () => {
-    const filmsArr = [
-      {
-        image: 'https://klike.net/uploads/posts/2018-06/1528452924_1.jpg',
-        title: 'Minions',
-        genre: 'Comedy',
-        year: '2015',
-        id: 8080
-      },
-      {
-        image: 'https://upload.wikimedia.org/wikipedia/en/a/a9/Christopher_Robin_poster.png',
-        title: 'Christopher Robin',
-        genre: 'some',
-        year: '2018',
-        id: 1000000
-      },
-      {
-        image: 'https://www.pulsar.ua/components/com_jshopping/files/img_products/full_DEC090202_www.pulsar.ua.jpg',
-        title: 'Batman',
-        genre: 'some',
-        year: '2011',
-        id: 90323123
-      }
-    ],
-    component = mount(<List  films={filmsArr}/>);
-    expect(component.find(Item).length).toBe(3);
+    expect(component.find('.movieList')).toBeTruthy();
+    expect(component.find('.movieItem')).toHaveLength(1);
   });
 })

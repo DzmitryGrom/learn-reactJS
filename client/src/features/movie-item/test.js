@@ -1,32 +1,37 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 import Item from './index';
 
-const mockDates = {
-  image: 'https://bipbap.ru/wp-content/uploads/2017/04/leto_derevo_nebo_peyzazh_dom_derevya_domik_priroda_3000x2000.jpg',
-  title: 'Test',
-  year: '2018',
-  genre: 'comedy',
+const mockDates =  {
+    "id": 0,
+    "title": "Dilwale Dulhania Le Jayenge",
+    "tagline": "string",
+    "vote_average": 0,
+    "vote_count": 0,
+    "release_date": "1995-02-01",
+    "poster_path": "https://image.tmdb.org/t/p/w500/uC6TTUhPpQCmgldGyYveKRAu8JN.jpg",
+    "overview": "string",
+    "genres": ["Comedy", "Drama", "Romance"]
 }
 
 describe('tests items', () => {
   it('render empty', () => {
-    const component = render(<Item />);
+    const component = mount(<Item />);
     
     expect(component).toMatchSnapshot();
     expect(component.find('.movieItem__title').text()).toBeFalsy();
     expect(component.find('.movieItem__genre').text()).toBeFalsy();
     expect(component.find('.movieItem__year').text()).toBeFalsy();
-    expect(component.find('.movieItem__img').get(0).attribs.style).toBe("background-image:url(null)");
+    expect(component.find('.movieItem__img').prop('style')).toEqual({"backgroundImage": "url(null)"});
   });
   
   it('render with dates', () => {
-    const component = render(<Item  {...mockDates} />);
-    
-    expect(component).toMatchSnapshot();
-    expect(component.find('.movieItem__title').text()).toBe('Test');
-    expect(component.find('.movieItem__genre').text()).toBe('comedy');
-    expect(component.find('.movieItem__year').text()).toBe('2018');
-    expect(component.find('.movieItem__img').get(0).attribs.style).toBe('background-image:url(https://bipbap.ru/wp-content/uploads/2017/04/leto_derevo_nebo_peyzazh_dom_derevya_domik_priroda_3000x2000.jpg)');
+      const component = mount(<Item  {...mockDates} />);
+      expect(component).toMatchSnapshot();
+      expect(component.find('.movieItem__title').text()).toBe('Dilwale Dulhania Le Jayenge');
+      expect(component.find('.movieItem__genre').text()).toBe("Comedy Drama Romance ");
+      expect(component.find('.movieItem__year').text()).toBe('1995');
+      expect(component.find('.movieItem__img').prop('style')).toEqual({"backgroundImage": "url(https://image.tmdb.org/t/p/w500/uC6TTUhPpQCmgldGyYveKRAu8JN.jpg)"});
   });
+
 })
