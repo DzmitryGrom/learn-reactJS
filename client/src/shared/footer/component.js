@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './component.less';
-import Logo from '../logo';
+import Logo from '../logo/index';
 
 const Footer = () => (
   <div className={styles.footer}>

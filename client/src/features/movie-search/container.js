@@ -3,14 +3,17 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as Action from './actions';
+import styles from './component.less';
+import Logo from '../../shared/logo';
+import Filter from './search-filter';
 
-import MovieHeader from '../header';
-import MovieFooter from '../footer';
-import MovieList from '../movie-list';
+import MovieFooter from '../../shared/footer';
+import MovieList from '../../shared/movie-list';
 import { getFilms, getFilmsWithParams } from './utils';
 import { getValueFilter } from '../../core/store/selectors';
+import { getVisibleFilmsLength } from '../../core/store/selectors';
 
-class SeriesContainer extends Component {
+class MovieSearchContainer extends Component {
   async componentDidMount() {
     const { setMovies } = this.props;
     const { data } = await getFilms();
@@ -28,31 +31,45 @@ class SeriesContainer extends Component {
   }
 
   render() {
+    const { filmsLength } = this.props;
     return (
-      <>
-        <MovieHeader />
+      <div className={styles.movieSearch}>
+        <div className={styles.movieSearch__header}>
+          <Logo />
+          <Filter />
+        </div>
+        <div className={styles.movieSearch__bottomPanel}>
+          <span id="movieValue" className={styles.movieSearch__value}>
+            {filmsLength}
+              {' '}
+            movies found
+          </span>
+        </div>
         <MovieList />
         <MovieFooter />
-      </>
+      </div>
     );
   }
 }
 
-SeriesContainer.propTypes = {
+MovieSearchContainer.propTypes = {
   setMovies: PropTypes.func.isRequired,
   filter: PropTypes.objectOf(PropTypes.string),
+  filmsLength: PropTypes.number,
 };
 
-SeriesContainer.defaultProps = {
+MovieSearchContainer.defaultProps = {
   filter: null,
+  filmsLength: 0,
 };
 
 const mapStateToProps = state => ({
   filter: getValueFilter(state),
+  filmsLength: getVisibleFilmsLength(state),
 });
 
 const mapDispathToProps = dispatch => ({
   ...bindActionCreators(Action, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispathToProps)(SeriesContainer);
+export default connect(mapStateToProps, mapDispathToProps)(MovieSearchContainer);

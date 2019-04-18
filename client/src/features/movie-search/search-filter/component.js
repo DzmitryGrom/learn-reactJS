@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import Button from '../../shared/button';
+import Button from '../../../shared/button/index';
 import styles from './component.less';
 
 const FilterComponent = ({

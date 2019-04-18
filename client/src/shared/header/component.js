@@ -5,7 +5,7 @@ import { getVisibleFilmsLength } from '../../core/store/selectors';
 
 import styles from './component.less';
 import Logo from '../logo';
-import Filter from '../search-filter';
+import Filter from '../../features/movie-search/search-filter';
 
 const Header = (props) => {
   const { filmsLength } = props;
@@ -32,7 +32,7 @@ const Header = (props) => {
           <span id="movieValue" className={styles.header__value}>
             {filmsLength}
             {' '}
-movies found
+            movies found
           </span>
         </div>
       </div>

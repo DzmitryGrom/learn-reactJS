@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import styles from './component.less';
 
 const MovieItem = ({
-  poster_path, title, release_date, genres,
+  poster, title, release, genres, onMovieClick
 }) => (
-  <div className={styles.movieItem}>
-    <div style={{ backgroundImage: `url(${poster_path})` }} className={styles.movieItem__img} />
+  <div onClick={onMovieClick} className={styles.movieItem}>
+    <div style={{ backgroundImage: `url(${poster})` }} className={styles.movieItem__img} />
     <div className={styles.movieItem__info}>
       <div>
         <h3 className={styles.movieItem__title}>{title}</h3>
@@ -20,22 +20,23 @@ const MovieItem = ({
           )) : genres) }
         </h4>
       </div>
-      <span className={styles.movieItem__year}>{release_date && release_date.substring(0, 4)}</span>
+      <span className={styles.movieItem__year}>{release && release.substring(0, 4)}</span>
     </div>
   </div>
 );
 
 MovieItem.propTypes = {
-  poster_path: PropTypes.string,
+  poster: PropTypes.string,
   title: PropTypes.string,
-  release_date: PropTypes.string,
+  release: PropTypes.string,
   genres: PropTypes.arrayOf(PropTypes.string),
+  onMovieClick: PropTypes.func.isRequired
 };
 
 MovieItem.defaultProps = {
-  poster_path: null,
+  poster: null,
   title: null,
-  release_date: null,
+  release: null,
   genres: null,
 };
 

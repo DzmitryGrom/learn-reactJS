@@ -14,8 +14,8 @@ const ErrorBoundaryComponent = ({ error, errorInfo }) => (
 );
 
 ErrorBoundaryComponent.propTypes = {
-  error: PropTypes.string,
-  errorInfo: PropTypes.string,
+  error: PropTypes.objectOf(PropTypes.shape({})).isRequired,
+  errorInfo: PropTypes.any,
 };
 
 ErrorBoundaryComponent.defaultProps = {

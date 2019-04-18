@@ -59,7 +59,7 @@
     "build": "webpack --config webpack.config.js",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --mode development --open --hot --history-api-fallback",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "cypress": "cypress open"

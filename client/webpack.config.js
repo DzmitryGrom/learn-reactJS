@@ -12,7 +12,8 @@ module.exports = function(env, option){
 
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'bundle.js'
+            filename: 'bundle.js',
+            publicPath: '/'
         },
 
         devtool: isProduction ? 'none' : 'source-map',
@@ -74,6 +75,10 @@ module.exports = function(env, option){
                     }
                 }
             }
+        },
+
+        devServer: {
+            historyApiFallback: true
         },
 
         plugins: [

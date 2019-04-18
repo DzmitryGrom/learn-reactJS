@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import * as action from './actions';
 import reducer from './reducer';
-import  * as type from '../../core/store/constants';
+import  * as type from '../../../core/store/constants';
 
 const mockStore = configureStore(),
   mockStoreInitialized = mockStore({ 

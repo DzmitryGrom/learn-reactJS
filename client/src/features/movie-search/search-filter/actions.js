@@ -1,4 +1,4 @@
-import * as type from '../../core/store/constants';
+import * as type from '../../../core/store/constants';
 
 export const setSearch = text => ({
     type: type.SEARCH_MOVIES,
