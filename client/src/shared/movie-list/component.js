@@ -8,14 +8,11 @@ const MovieListComponent = (props) => {
   return (
     <div className={styles.movieList}>
         {
-            films ? films.map(film => (<MovieItemContainer onMovieClick={onMovieClick} key={film.id} {...film} />)) : 'load'
+            films.length > 0 ? films.map(film => (<MovieItemContainer onMovieClick={onMovieClick} key={film.id} {...film} />))
+                : <h2 className={styles.movieList__text}>No films found</h2>
         }
     </div>
   );
-};
-
-MovieListComponent.propTypes = {
-    films: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 MovieListComponent.propTypes = {

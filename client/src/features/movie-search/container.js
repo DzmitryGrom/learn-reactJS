@@ -14,11 +14,11 @@ import { getValueFilter } from '../../core/store/selectors';
 import { getVisibleFilmsLength } from '../../core/store/selectors';
 
 class MovieSearchContainer extends Component {
-  async componentDidMount() {
-    const { setMovies } = this.props;
-    const { data } = await getFilms();
-    setMovies(data.data);
-  }
+  // async componentDidMount() {
+  //   const { setMovies } = this.props;
+  //   const { data } = await getFilms();
+  //   setMovies(data.data);
+  // }
 
   async componentDidUpdate(prevProps) {
     const { filter, setMovies } = this.props;
@@ -36,16 +36,16 @@ class MovieSearchContainer extends Component {
       <div className={styles.movieSearch}>
         <div className={styles.movieSearch__header}>
           <Logo />
-          <Filter />
+          <Filter  />
         </div>
         <div className={styles.movieSearch__bottomPanel}>
           <span id="movieValue" className={styles.movieSearch__value}>
-            {filmsLength}
-              {' '}
-            movies found
+            {filmsLength ? (filmsLength + ' ' + 'movies found'): null}
           </span>
         </div>
-        <MovieList />
+        <div className={styles.movieSearch__main}>
+          <MovieList />
+        </div>
         <MovieFooter />
       </div>
     );
@@ -60,7 +60,7 @@ MovieSearchContainer.propTypes = {
 
 MovieSearchContainer.defaultProps = {
   filter: null,
-  filmsLength: 0,
+  filmsLength: null,
 };
 
 const mapStateToProps = state => ({

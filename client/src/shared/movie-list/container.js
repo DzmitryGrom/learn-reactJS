@@ -2,10 +2,23 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { getVisibleFilms } from '../../core/store/selectors';
 import MovieList from './component';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class MovieListContainer extends Component {
+
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired,
+        films: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    };
+
     handleClick = (id) => {
-       console.log(id);
+        const { history } = this.props;
+        history.push({
+            pathname:  `/film/${id}`,
+        });
     }
 
     render(){
@@ -21,4 +34,4 @@ const mapStateToProps = state => ({
     films: getVisibleFilms(state),
 });
 
-export default connect(mapStateToProps)(MovieListContainer);
+export default withRouter(connect(mapStateToProps)(MovieListContainer));
