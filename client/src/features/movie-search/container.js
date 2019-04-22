@@ -1,35 +1,48 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as Action from './actions';
+import * as Action from '../common/actions';
+import { getFilmsWithQuery } from '../common/utils';
 import styles from './component.less';
 import Logo from '../../shared/logo';
 import Filter from './search-filter';
-
 import MovieFooter from '../../shared/footer';
 import MovieList from '../../shared/movie-list';
-import { getFilms, getFilmsWithParams } from './utils';
-import { getValueFilter } from '../../core/store/selectors';
-import { getVisibleFilmsLength } from '../../core/store/selectors';
+import { getValueFilter, getVisibleFilmsLength } from '../../core/store/selectors';
 
 class MovieSearchContainer extends Component {
-  // async componentDidMount() {
-  //   const { setMovies } = this.props;
-  //   const { data } = await getFilms();
-  //   setMovies(data.data);
-  // }
-
-  async componentDidUpdate(prevProps) {
-    const { filter, setMovies } = this.props;
-    if (filter !== prevProps.filter) {
-      if (filter.text !== '') {
-        const { data } = await getFilmsWithParams(filter, filter.text);
-        setMovies(data.data);
-      }
+  static propTypes = {
+    setMovies: PropTypes.func.isRequired,
+    filter: PropTypes.objectOf(PropTypes.string),
+    filmsLength: PropTypes.number,
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+  
+  componentDidMount() {
+    this.componentAddItems();
+  };
+  
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+    if ( location.pathname !== prevProps.location.pathname) {
+      this.componentAddItems();
     }
   }
-
+  
+  async componentAddItems(){
+    const { history, setMovies } = this.props;
+    let url = history.location.pathname;
+    if (url !== '/search') {
+      url =  url.substring(15);
+      const { data } = await getFilmsWithQuery(url);
+      setMovies(data.data);
+    }
+  }
+  
   render() {
     const { filmsLength } = this.props;
     return (
@@ -52,12 +65,6 @@ class MovieSearchContainer extends Component {
   }
 }
 
-MovieSearchContainer.propTypes = {
-  setMovies: PropTypes.func.isRequired,
-  filter: PropTypes.objectOf(PropTypes.string),
-  filmsLength: PropTypes.number,
-};
-
 MovieSearchContainer.defaultProps = {
   filter: null,
   filmsLength: null,
@@ -72,4 +79,4 @@ const mapDispathToProps = dispatch => ({
   ...bindActionCreators(Action, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispathToProps)(MovieSearchContainer);
+export default withRouter(connect(mapStateToProps, mapDispathToProps)(MovieSearchContainer));

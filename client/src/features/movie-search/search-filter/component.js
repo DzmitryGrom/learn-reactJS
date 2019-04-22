@@ -18,12 +18,12 @@ const FilterComponent = ({
       />
       <div className={styles.filter__buttons}>
         <span className={styles.filter__buttonsLabel}>search by</span>
-        <label htmlFor="btnTitle">
-          <input defaultChecked type="radio" id="btnTitle" name="search" title="title" onClick={onButtonClickSearch} />
+        <label htmlFor="title">
+          <input type="radio" id="title" name="search" title="title" onClick={onButtonClickSearch} />
           <span className={styles.filter__btn}>title</span>
         </label>
-        <label htmlFor="btnGenre">
-          <input type="radio" id="btnGenre" name="search" title="genres" onClick={onButtonClickSearch} />
+        <label htmlFor="genre">
+          <input type="radio" id="genre" name="search" title="genre" onClick={onButtonClickSearch} />
           <span className={styles.filter__btn}>genre</span>
         </label>
       </div>

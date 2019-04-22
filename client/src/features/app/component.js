@@ -13,6 +13,7 @@ const App = () => (
       <Switch>
         <Redirect exact from="/" to="/search" />
         <Route exact path="/search" component={MovieSearch}/>
+        <Route exact path="/search/Search:tab" component={MovieSearch}/>
         <Route path="/film" component={MovieDetail}/>
         <Route path="*" component={NotFound}/>
       </Switch>
