@@ -1,39 +1,34 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as Action from './actions';
 
 import { getVisibleFilmsLength } from '../../../core/store/selectors';
 import FilterComponent from './component';
 
 class FilterContainer extends Component {
   static propTypes = {
-    setSearchText: PropTypes.func.isRequired,
-    setSearch: PropTypes.func.isRequired,
-    setSortByRelease: PropTypes.func.isRequired,
-    setSortByRating: PropTypes.func.isRequired,
-    filmsLength: PropTypes.number,
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    filmsLength: PropTypes.number.isRequired,
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
   };
-  
+
   state = {
     valueInput: false,
     searchName: false,
+    sortBy: false,
   };
 
   componentDidMount() {
     this.textInput.focus();
     const { history } = this.props;
-    let url = history.location.pathname;
-    url = url.substring(url.length - 6);
-    url = url.replace(/=/g, '');
-    const input = document.getElementById(url);
-    input && input.setAttribute('checked', 'true');
-  };
+    const url = history.location.pathname;
+    const inputs = document.querySelectorAll('input[type=radio]');
+    for (let i = 0; i < inputs.length; i++) {
+      if (url.includes(inputs[i].id)) {
+        inputs[i].setAttribute('checked', 'true');
+      }
+    }
+  }
 
   getInputRef = (node) => {
     this.textInput = node;
@@ -43,12 +38,18 @@ class FilterContainer extends Component {
     this.setState({
       valueInput: this.textInput.value,
     });
-    const { searchName } = this.state;
+    const { searchName, sortBy } = this.state;
     const { history } = this.props;
     if (this.textInput.value !== '') {
-      history.push({
-        pathname:  `search/Search=${this.textInput.value}&searchBy=${searchName}`,
-      });
+      if (!sortBy) {
+        history.push({
+          pathname: `/search/Search=search=${this.textInput.value}&searchBy=${searchName}`,
+        });
+      } else {
+        history.push({
+          pathname: `/search/Search=sortBy=${sortBy}&sortOrder=desc&search=${this.textInput.value}&searchBy=${searchName}`,
+        });
+      }
     }
   };
 
@@ -56,19 +57,13 @@ class FilterContainer extends Component {
     this.setState({ searchName: event.target.title });
   };
 
-  handleButtonClickRelease = () => {
-    const { setSortByRelease } = this.props;
-    setSortByRelease();
-  };
-
-  handleButtonClickRating = () => {
-    const { setSortByRating } = this.props;
-    setSortByRating();
+  handleButtonClickSort = (event) => {
+    this.setState({ sortBy: event.target.id });
   };
 
   render() {
     const { filmsLength } = this.props;
-    const { valueInput, idSelect } = this.state;
+    const { valueInput } = this.state;
     if (valueInput.length > 15) {
       throw new Error('I crashed!');
     }
@@ -77,8 +72,7 @@ class FilterContainer extends Component {
         getInputRef={this.getInputRef}
         onButtonClick={this.handleButtonClick}
         onButtonClickSearch={this.handleButtonClickSearch}
-        onButtonClickRelease={this.handleButtonClickRelease}
-        onButtonClickRating={this.handleButtonClickRating}
+        onButtonClickSort={this.handleButtonClickSort}
         filmsLength={filmsLength}
       />
     );
@@ -89,8 +83,4 @@ const mapStateToProps = state => ({
   filmsLength: getVisibleFilmsLength(state),
 });
 
-const mapDispathToProps = dispatch => ({
-  ...bindActionCreators(Action, dispatch),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispathToProps)(FilterContainer));
+export default withRouter(connect(mapStateToProps)(FilterContainer));

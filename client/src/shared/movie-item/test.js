@@ -15,16 +15,6 @@ const mockDates =  {
 }
 
 describe('tests items', () => {
-  it('render empty', () => {
-    const component = mount(<Item />);
-    
-    expect(component).toMatchSnapshot();
-    expect(component.find('.movieItem__title').text()).toBeFalsy();
-    expect(component.find('.movieItem__genre').text()).toBeFalsy();
-    expect(component.find('.movieItem__year').text()).toBeFalsy();
-    expect(component.find('.movieItem__img').prop('style')).toEqual({"backgroundImage": "url(null)"});
-  });
-  
   it('render with dates', () => {
       const component = mount(<Item  {...mockDates} />);
       expect(component).toMatchSnapshot();

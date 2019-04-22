@@ -1,11 +1,11 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import MovieSearch from './index';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import { mount } from 'enzyme';
+import MovieSearch from './index';
 import { SET_MOVIES } from '../../core/store/constants';
-import * as action from './actions';
-import reducer from './reducer';
+import * as action from '../common/actions';
+import reducer from '../common/reducer';
 
 const mockStore = configureStore();
 
@@ -16,7 +16,7 @@ describe('tests movieSearch ', () => {
           };
         const store = mockStore(initialState);
         
-        const wrapper = mount(<Provider store={store}><MovieSearch/></Provider>),
+        const wrapper = mount(<Provider store={store}><MovieSearch /></Provider>),
             component = wrapper.find(MovieSearch);
         expect(component).toMatchSnapshot();
         expect(component.find('.movieList')).toBeTruthy();
@@ -62,7 +62,7 @@ describe('tests movieSearch ', () => {
           };
         const store = mockStore(initialState);
         
-        const wrapper = mount(<Provider store={store}><MovieSearch/></Provider>),
+        const wrapper = mount(<Provider store={store}><MovieSearch /></Provider>),
             component = wrapper.find(MovieSearch);
         expect(component).toMatchSnapshot();
         expect(component.find('.movieList')).toBeTruthy();

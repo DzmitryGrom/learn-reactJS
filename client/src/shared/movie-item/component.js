@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './component.less';
 
 const MovieItem = ({
-  poster, title, release, genres, onMovieClick
+  poster, title, release, genres, onMovieClick,
 }) => (
   <div onClick={onMovieClick} className={styles.movieItem}>
     <div style={{ backgroundImage: `url(${poster})` }} className={styles.movieItem__img} />
@@ -30,7 +30,7 @@ MovieItem.propTypes = {
   title: PropTypes.string,
   release: PropTypes.string,
   genres: PropTypes.arrayOf(PropTypes.string),
-  onMovieClick: PropTypes.func.isRequired
+  onMovieClick: PropTypes.func.isRequired,
 };
 
 MovieItem.defaultProps = {

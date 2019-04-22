@@ -12,29 +12,34 @@ import MovieList from '../../shared/movie-list';
 import Button from '../../shared/button/index';
 
 class MovieDetailContainer extends Component {
-
     static propTypes = {
-      match: PropTypes.object.isRequired,
-      location: PropTypes.object.isRequired,
-      history: PropTypes.object.isRequired,
+      location: PropTypes.objectOf(PropTypes.shape({})).isRequired,
+      history: PropTypes.objectOf(PropTypes.shape({})).isRequired,
     };
 
     state = {
       selectFilm: null,
     };
-  
+
     componentDidMount() {
       this.componentChangeItem();
-    };
-  
+    }
+
     componentDidUpdate(prevProps) {
       const { location } = this.props;
-      if ( location.pathname !== prevProps.location.pathname) {
+      if (location.pathname !== prevProps.location.pathname) {
         this.componentChangeItem();
       }
     }
-  
-    async componentChangeItem(){
+
+    handleButtonClick = () => {
+      const { history } = this.props;
+      history.push({
+        pathname: '/search',
+      });
+    };
+
+    async componentChangeItem() {
       const { history, setMovies } = this.props;
       let urlId = history.location.pathname;
       urlId = urlId.replace(/\D+/g, '');
@@ -42,13 +47,6 @@ class MovieDetailContainer extends Component {
       setMovies(films.data.data);
       this.setState({ selectFilm: film.data });
     }
-  
-    handleButtonClick = () => {
-      const { history } = this.props;
-      history.push({
-        pathname:  `/search`,
-      });
-    };
 
     render() {
       const { selectFilm } = this.state;
@@ -57,25 +55,31 @@ class MovieDetailContainer extends Component {
           <div className={styles.movieDetail__header}>
             <Logo />
             <Button selector="btnSearch" text="search" modifier="white" size="big" onButtonClick={this.handleButtonClick} />
-            { selectFilm ? (<div className={styles.movieDetail__target}>
-              <div className={styles.movieDetail__cover} style={{ backgroundImage: `url(${selectFilm.poster_path})` }} />
-              <div>
-                <h2 className={styles.movieDetail__title}>{selectFilm.title}</h2>
-                <p className={styles.movieDetail__description}>{selectFilm.tagline}</p>
-                <p className={styles.movieDetail__date}>
-                  <span>{selectFilm.release_date.substring(0, 4)}</span>
-                  <span>{selectFilm.runtime} min</span>
-                </p>
-                <p className={styles.movieDetail__text}>{selectFilm.overview}</p>
+            { selectFilm ? (
+              <div className={styles.movieDetail__target}>
+                <div className={styles.movieDetail__cover} style={{ backgroundImage: `url(${selectFilm.poster_path})` }} />
+                <div>
+                  <h2 className={styles.movieDetail__title}>{selectFilm.title}</h2>
+                  <p className={styles.movieDetail__description}>{selectFilm.tagline}</p>
+                  <p className={styles.movieDetail__date}>
+                    <span>{selectFilm.release_date.substring(0, 4)}</span>
+                    <span>
+                      {selectFilm.runtime}
+                      {' '}
+                      min
+                    </span>
+                  </p>
+                  <p className={styles.movieDetail__text}>{selectFilm.overview}</p>
+                </div>
               </div>
-            </div>) : null}
+            ) : null}
           </div>
           <div className={styles.movieDetail__bottomPanel}>
-                  <span id="movieValue" className={styles.movieDetail__value}>
+            <span id="movieValue" className={styles.movieDetail__value}>
                       Films by
-                    {selectFilm && '\t' + selectFilm.genres[0] + ' '}
+              {selectFilm && `\t${selectFilm.genres[0]} `}
                     genre
-                  </span>
+            </span>
           </div>
           <MovieList />
           <MovieFooter />

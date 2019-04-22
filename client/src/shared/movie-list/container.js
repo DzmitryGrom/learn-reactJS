@@ -6,28 +6,24 @@ import { getVisibleFilms } from '../../core/store/selectors';
 import MovieList from './component';
 
 class MovieListContainer extends Component {
-
     static propTypes = {
-      match: PropTypes.object.isRequired,
-      location: PropTypes.object.isRequired,
-      history: PropTypes.object.isRequired,
+      history: PropTypes.objectOf(PropTypes.any).isRequired,
       films: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     };
 
     handleClick = (id) => {
       const { history } = this.props;
       history.push({
-        pathname:  `/film/${id}`,
+        pathname: `/film/${id}`,
       });
     };
 
     render() {
       const { films } = this.props;
       return (
-        <MovieList films={films} onMovieClick={this.handleClick}/>
+        <MovieList films={films} onMovieClick={this.handleClick} />
       );
     }
-
 }
 
 const mapStateToProps = state => ({
