@@ -13,8 +13,7 @@ const App = () => (
   <ErrorBoundary>
       <Switch>
         <Redirect exact from="/" to="/search" />
-        <Route exact path="/search" component={MovieSearch}/>
-        <Route exact path="/search/:query" component={MovieSearch}/>
+        <Route exact path="/search/:query?" component={MovieSearch}/>
         <Route path="/film/:id" component={MovieDetail}/>
         <Route path="*" component={NotFound}/>
       </Switch>
