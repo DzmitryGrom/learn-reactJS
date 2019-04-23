@@ -21,6 +21,9 @@ export const searchFilms = async (appUrl) => {
 
 export const getFilmWithId = async (id) => {
   const film = await axios('/' + id);
-  const films = film.data.genres && await axios(`?search=${film.data.genres[0]}&searchBy=genres`);
+  let films = [];
+  if (film.data.genres && film.data.genres.length){
+    films = await axios(`?search=${film.data.genres[0]}&searchBy=genres`);
+  };
   return { film, films };
 };
