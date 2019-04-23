@@ -6,8 +6,8 @@ import MovieFooter from '../../shared/footer';
 import MovieList from '../../shared/movie-list';
 import Button from '../../shared/button/index';
 
-const MovieDetailComponent = ({selectFilm, onButtonClick}) => (
-  
+const MovieDetailComponent = ({ selectFilm, onButtonClick }) => (
+
   <div className={styles.movieDetail}>
     <div className={styles.movieDetail__header}>
       <Logo />
@@ -21,10 +21,10 @@ const MovieDetailComponent = ({selectFilm, onButtonClick}) => (
             <p className={styles.movieDetail__date}>
               <span>{selectFilm.release_date.substring(0, 4)}</span>
               <span>
-                      {selectFilm.runtime}
+                {selectFilm.runtime}
                 {' '}
                 min
-                    </span>
+              </span>
             </p>
             <p className={styles.movieDetail__text}>{selectFilm.overview}</p>
           </div>
@@ -53,4 +53,3 @@ MovieDetailComponent.propTypes = {
 };
 
 export default MovieDetailComponent;
-

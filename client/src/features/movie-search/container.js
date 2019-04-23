@@ -6,16 +6,15 @@ import PropTypes from 'prop-types';
 import * as Action from '../common/actions';
 import { getFilmsWithQuery } from '../common/utils';
 import { getVisibleFilmsLength } from '../../core/store/selectors';
-import MovieSearchComponent from './component'
+import MovieSearchComponent from './component';
 
 class MovieSearchContainer extends Component {
   static propTypes = {
     setMovies: PropTypes.func.isRequired,
     filmsLength: PropTypes.number,
     location: PropTypes.objectOf(PropTypes.string).isRequired,
-    history: PropTypes.objectOf(PropTypes.any).isRequired,
   };
-  
+
   componentDidMount() {
     this.loadFilms();
   }
@@ -26,12 +25,11 @@ class MovieSearchContainer extends Component {
       this.loadFilms();
     }
   }
-  
+
   async loadFilms() {
-    const { setMovies, location } = this.props;
-    const params = new URLSearchParams(location.search);
+    const { setMovies } = this.props;
+    const params = new URLSearchParams(window.location.search);
     const url = params.get('query');
-    console.log(url);
     if (url) {
       const { data } = await getFilmsWithQuery(url);
       setMovies(data.data);
@@ -41,7 +39,7 @@ class MovieSearchContainer extends Component {
   render() {
     const { filmsLength } = this.props;
     return (
-        <MovieSearchComponent filmsLength={filmsLength} />
+      <MovieSearchComponent filmsLength={filmsLength} />
     );
   }
 }
