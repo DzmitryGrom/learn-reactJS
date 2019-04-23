@@ -5,16 +5,12 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as Action from '../common/actions';
 import { getFilmWithId } from '../common/utils';
-import styles from './component.less';
-import Logo from '../../shared/logo';
-import MovieFooter from '../../shared/footer';
-import MovieList from '../../shared/movie-list';
-import Button from '../../shared/button/index';
+import MovieDetailComponent from './component';
 
 class MovieDetailContainer extends Component {
     static propTypes = {
-      location: PropTypes.objectOf(PropTypes.shape({})).isRequired,
       history: PropTypes.objectOf(PropTypes.shape({})).isRequired,
+      match: PropTypes.objectOf(PropTypes.any).isRequired,
     };
 
     state = {
@@ -22,13 +18,13 @@ class MovieDetailContainer extends Component {
     };
 
     componentDidMount() {
-      this.componentChangeItem();
+      this.loadFilm();
     }
 
     componentDidUpdate(prevProps) {
-      const { location } = this.props;
-      if (location.pathname !== prevProps.location.pathname) {
-        this.componentChangeItem();
+      const { match } = this.props;
+      if (match.params.id !== prevProps.match.params.id) {
+        this.loadFilm();
       }
     }
 
@@ -39,11 +35,9 @@ class MovieDetailContainer extends Component {
       });
     };
 
-    async componentChangeItem() {
-      const { history, setMovies } = this.props;
-      let urlId = history.location.pathname;
-      urlId = urlId.replace(/\D+/g, '');
-      const { film, films } = await getFilmWithId(urlId);
+    async loadFilm() {
+      const { setMovies, match } = this.props;
+      const { film, films } = await getFilmWithId(match.params.id);
       setMovies(films.data.data);
       this.setState({ selectFilm: film.data });
     }
@@ -51,39 +45,7 @@ class MovieDetailContainer extends Component {
     render() {
       const { selectFilm } = this.state;
       return (
-        <div className={styles.movieDetail}>
-          <div className={styles.movieDetail__header}>
-            <Logo />
-            <Button selector="btnSearch" text="search" modifier="white" size="big" onButtonClick={this.handleButtonClick} />
-            { selectFilm ? (
-              <div className={styles.movieDetail__target}>
-                <div className={styles.movieDetail__cover} style={{ backgroundImage: `url(${selectFilm.poster_path})` }} />
-                <div>
-                  <h2 className={styles.movieDetail__title}>{selectFilm.title}</h2>
-                  <p className={styles.movieDetail__description}>{selectFilm.tagline}</p>
-                  <p className={styles.movieDetail__date}>
-                    <span>{selectFilm.release_date.substring(0, 4)}</span>
-                    <span>
-                      {selectFilm.runtime}
-                      {' '}
-                      min
-                    </span>
-                  </p>
-                  <p className={styles.movieDetail__text}>{selectFilm.overview}</p>
-                </div>
-              </div>
-            ) : null}
-          </div>
-          <div className={styles.movieDetail__bottomPanel}>
-            <span id="movieValue" className={styles.movieDetail__value}>
-                      Films by
-              {selectFilm && `\t${selectFilm.genres[0]} `}
-                    genre
-            </span>
-          </div>
-          <MovieList />
-          <MovieFooter />
-        </div>
+        <MovieDetailComponent onButtonClick={this.handleButtonClick} selectFilm={selectFilm} />
       );
     }
 }

@@ -6,9 +6,8 @@ export const getFilmsWithQuery = async (url) => {
   return data;
 };
 
-
 export const getFilmWithId = async (id) => {
-  const film = await axios(API_HOST + API_FILMS + '/' + id),
-    films = await axios(API_HOST + API_FILMS + `?search=${film.data.genres[0]}&searchBy=genres`);
+  const film = await axios(API_HOST + API_FILMS + '/' + id);
+  const films = await axios(API_HOST + API_FILMS + `?search=${film.data.genres[0]}&searchBy=genres`);
   return { film, films };
 };

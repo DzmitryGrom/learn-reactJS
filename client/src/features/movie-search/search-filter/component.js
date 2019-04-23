@@ -51,4 +51,8 @@ FilterComponent.propTypes = {
   filmsLength: PropTypes.number,
 };
 
+FilterComponent.defaultProps = {
+  filmsLength: 0,
+};
+
 export default FilterComponent;

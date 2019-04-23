@@ -43,11 +43,11 @@ class FilterContainer extends Component {
     if (this.textInput.value !== '') {
       if (!sortBy) {
         history.push({
-          pathname: `/search/Search=search=${this.textInput.value}&searchBy=${searchName}`,
+          pathname: `/search/Search?query=search=${this.textInput.value}&searchBy=${searchName}`,
         });
       } else {
         history.push({
-          pathname: `/search/Search=sortBy=${sortBy}&sortOrder=desc&search=${this.textInput.value}&searchBy=${searchName}`,
+          pathname: `/search/Search?query=sortBy=${sortBy}&sortOrder=desc&search=${this.textInput.value}&searchBy=${searchName}`,
         });
       }
     }

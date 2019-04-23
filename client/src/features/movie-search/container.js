@@ -5,12 +5,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as Action from '../common/actions';
 import { getFilmsWithQuery } from '../common/utils';
-import styles from './component.less';
-import Logo from '../../shared/logo';
-import Filter from './search-filter';
-import MovieFooter from '../../shared/footer';
-import MovieList from '../../shared/movie-list';
 import { getVisibleFilmsLength } from '../../core/store/selectors';
+import MovieSearchComponent from './component'
 
 class MovieSearchContainer extends Component {
   static propTypes = {
@@ -19,23 +15,24 @@ class MovieSearchContainer extends Component {
     location: PropTypes.objectOf(PropTypes.string).isRequired,
     history: PropTypes.objectOf(PropTypes.any).isRequired,
   };
-
+  
   componentDidMount() {
-    this.componentAddItems();
+    this.loadFilms();
   }
 
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     if (location.pathname !== prevProps.location.pathname) {
-      this.componentAddItems();
+      this.loadFilms();
     }
   }
-
-  async componentAddItems() {
-    const { history, setMovies } = this.props;
-    let url = history.location.pathname;
-    if (url !== '/search') {
-      url = url.substring(15);
+  
+  async loadFilms() {
+    const { setMovies, location } = this.props;
+    const params = new URLSearchParams(location.search);
+    const url = params.get('query');
+    console.log(url);
+    if (url) {
       const { data } = await getFilmsWithQuery(url);
       setMovies(data.data);
     }
@@ -44,21 +41,7 @@ class MovieSearchContainer extends Component {
   render() {
     const { filmsLength } = this.props;
     return (
-      <div className={styles.movieSearch}>
-        <div className={styles.movieSearch__header}>
-          <Logo />
-          <Filter />
-        </div>
-        <div className={styles.movieSearch__bottomPanel}>
-          <span id="movieValue" className={styles.movieSearch__value}>
-            {filmsLength ? (`${filmsLength} movies found`) : null}
-          </span>
-        </div>
-        <div className={styles.movieSearch__main}>
-          <MovieList />
-        </div>
-        <MovieFooter />
-      </div>
+        <MovieSearchComponent filmsLength={filmsLength} />
     );
   }
 }

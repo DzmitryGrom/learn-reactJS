@@ -78,7 +78,9 @@ module.exports = function(env, option){
         },
 
         devServer: {
-            historyApiFallback: true
+            historyApiFallback: true,
+            hot: true,
+            open: true,
         },
 
         plugins: [
