@@ -10,6 +10,7 @@ class FilterContainer extends Component {
   static propTypes = {
     filmsLength: PropTypes.number.isRequired,
     history: PropTypes.objectOf(PropTypes.any).isRequired,
+    location: PropTypes.objectOf(PropTypes.any).isRequired,
   };
 
   state = {
@@ -20,8 +21,8 @@ class FilterContainer extends Component {
 
   componentDidMount() {
     this.textInput.focus();
-    const { history } = this.props;
-    const url = history.location.pathname;
+    const { location } = this.props;
+    const url = location.search;
     const inputs = document.querySelectorAll('input[type=radio]');
     for (let i = 0; i < inputs.length; i++) {
       if (url.includes(inputs[i].id)) {
@@ -42,13 +43,9 @@ class FilterContainer extends Component {
     const { history } = this.props;
     if (this.textInput.value !== '') {
       if (!sortBy) {
-        history.push({
-          pathname: `/search/Search?query=search=${this.textInput.value}&searchBy=${searchName}`,
-        });
+        history.push(`/search/Search?search=${this.textInput.value}&searchBy=${searchName}`);
       } else {
-        history.push({
-          pathname: `/search/Search?query=sortBy=${sortBy}&sortOrder=desc&search=${this.textInput.value}&searchBy=${searchName}`,
-        });
+        history.push(`/search/Search?sortBy=${sortBy}&sortOrder=desc&search=${this.textInput.value}&searchBy=${searchName}`);
       }
     }
   };
@@ -83,4 +80,4 @@ const mapStateToProps = state => ({
   filmsLength: getVisibleFilmsLength(state),
 });
 
-export default withRouter(connect(mapStateToProps)(FilterContainer));
+export default connect(mapStateToProps)(withRouter(FilterContainer));

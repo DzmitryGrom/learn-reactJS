@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import * as Action from '../common/actions';
-import { getFilmsWithQuery } from '../common/utils';
+import { searchFilms } from '../common/utils';
 import { getVisibleFilmsLength } from '../../core/store/selectors';
 import MovieSearchComponent from './component';
 
@@ -12,7 +13,10 @@ class MovieSearchContainer extends Component {
   static propTypes = {
     setMovies: PropTypes.func.isRequired,
     filmsLength: PropTypes.number,
-    location: PropTypes.objectOf(PropTypes.string).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+    }).isRequired,
   };
 
   componentDidMount() {
@@ -21,17 +25,16 @@ class MovieSearchContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { location } = this.props;
-    if (location.pathname !== prevProps.location.pathname) {
+    if (location.search !== prevProps.location.search) {
       this.loadFilms();
     }
   }
 
   async loadFilms() {
-    const { setMovies } = this.props;
-    const params = new URLSearchParams(window.location.search);
-    const url = params.get('query');
-    if (url) {
-      const { data } = await getFilmsWithQuery(url);
+    const { setMovies, location } = this.props;
+    const url = queryString.parse(location.search);
+    if (Object.keys(url).length !== 0) {
+      const { data } = await searchFilms(url);
       setMovies(data.data);
     }
   }
@@ -56,4 +59,4 @@ const mapDispathToProps = dispatch => ({
   ...bindActionCreators(Action, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispathToProps)(MovieSearchContainer));
+export default connect(mapStateToProps, mapDispathToProps)(withRouter(MovieSearchContainer));

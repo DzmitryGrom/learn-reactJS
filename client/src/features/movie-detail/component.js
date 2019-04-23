@@ -29,13 +29,11 @@ const MovieDetailComponent = ({ selectFilm, onButtonClick }) => (
             <p className={styles.movieDetail__text}>{selectFilm.overview}</p>
           </div>
         </div>
-      ) : null}
+      ) : <h2 className={styles.movieDetail__notFound}>Film not found</h2>}
     </div>
     <div className={styles.movieDetail__bottomPanel}>
       <span id="movieValue" className={styles.movieDetail__value}>
-        Films by
-        {selectFilm && `\t${selectFilm.genres[0]} `}
-        genre
+        {selectFilm ? `Films by ${selectFilm.genres[0]} genre` : null}
       </span>
     </div>
     <MovieList />

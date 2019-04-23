@@ -58,4 +58,4 @@ const mapDispathToProps = dispatch => ({
   ...bindActionCreators(Action, dispatch),
 });
 
-export default withRouter(connect(null, mapDispathToProps)(MovieDetailContainer));
+export default connect(null, mapDispathToProps)(withRouter(MovieDetailContainer));

@@ -4,7 +4,7 @@ import MovieItem from './component';
 
 class MovieItemContainer extends Component {
   static propTypes = {
-    onMovieClick: PropTypes.func,
+    onMovieClick: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     release_date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
