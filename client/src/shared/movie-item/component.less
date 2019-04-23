@@ -1,0 +1,60 @@
+.movieItem {
+  height: 400px;
+  flex: 0 0 300px;
+  color: gray;
+  margin: 20px;
+  cursor: pointer;
+  &__img {
+    width: 100%;
+    height: 300px;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  &__info {
+    padding: 20px 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    & > div {
+      flex: 1 0 70%
+    }
+    & > span {
+      flex: 0 0 10%;
+      height: 16px;
+    }
+  }
+  &__year, &__title {
+    color: slategray;
+  }
+  &__year {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px solid gray;
+    border-radius: 2px;
+  }
+  &__title {
+    margin: 0 0 10px;
+  }
+  &__genre {
+    margin: 0;
+    color: lightslategray;
+    span {
+      display: inline-block;
+      padding-right: 15px;
+      position: relative;
+      &:before {
+        content: '&';
+        position: absolute;
+        right: 2px;
+        top: 0;
+      }
+      &:last-child {
+        &:before {
+          content: '';
+          display: none;
+        }
+      }
+    }
+  }
+}
