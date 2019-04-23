@@ -3,7 +3,8 @@ import { API_HOST, API_FILMS } from '../../config';
 
 axios.defaults.baseURL = API_HOST + API_FILMS;
 
-export const parceUrlQueryString = (obj) => {
+export const parceUrlQueryString = (appUrl) => {
+  const obj = new URLSearchParams(appUrl);
   const params = {};
   params.sortBy = obj.get('sortBy');
   params.sortOrder = obj.get('sortOrder');
@@ -13,8 +14,7 @@ export const parceUrlQueryString = (obj) => {
 };
 
 export const searchFilms = async (appUrl) => {
-  const obj = new URLSearchParams(appUrl);
-  const params = parceUrlQueryString(obj);
+  const params = parceUrlQueryString(appUrl);
   const data = await axios({ params });
   return data;
 };

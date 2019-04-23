@@ -46,6 +46,7 @@ class MovieDetailContainer extends Component {
 
     render() {
       const { selectFilm } = this.state;
+      console.log(selectFilm);
       return (
         <MovieDetailComponent onButtonClick={this.handleButtonClick} selectFilm={selectFilm} />
       );
