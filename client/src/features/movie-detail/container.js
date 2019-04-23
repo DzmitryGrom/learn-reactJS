@@ -38,8 +38,8 @@ class MovieDetailContainer extends Component {
     async loadFilm() {
       const { setMovies, match } = this.props;
       const { film, films } = await getFilmWithId(match.params.id);
-      setMovies(films.data.data);
-      this.setState({ selectFilm: film.data });
+      films && setMovies(films.data.data);
+      films && this.setState({ selectFilm: film.data });
     }
 
     render() {

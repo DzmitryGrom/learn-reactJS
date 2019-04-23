@@ -36,7 +36,9 @@ const MovieDetailComponent = ({ selectFilm, onButtonClick }) => (
         {selectFilm ? `Films by ${selectFilm.genres[0]} genre` : null}
       </span>
     </div>
-    <MovieList />
+    <div className={styles.movieDetail__main}>
+      <MovieList />
+    </div>
     <MovieFooter />
   </div>
 );
