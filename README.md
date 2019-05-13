@@ -1,1 +1,1 @@
-to start a project you need to run 'node app.js' in the console ./server
+to start a project you need to run in the console 'npm run start'
