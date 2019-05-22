@@ -29,5 +29,4 @@ const MovieSearchComponent = ({ filmsLength }: Props) => (
   </div>
 );
 
-
 export default MovieSearchComponent;

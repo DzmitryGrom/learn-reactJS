@@ -2,11 +2,10 @@ import React from 'react';
 import styles from './component.less';
 import MovieItemContainer from '../movie-item/index';
 
-type
-Props = {
+type Props = {
   films: Array < any >,
   onMovieClick: Function,
-}
+};
 
 const MovieListComponent = ({ films, onMovieClick }: Props) => (
   <div className={styles.movieList}>

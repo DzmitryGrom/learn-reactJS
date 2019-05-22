@@ -7,7 +7,7 @@ const initialState = {
   films: List(),
 };
 
-type State = { films: Array<any> };
+type State = { films: Object };
 
 type setMoviesFlow = { type: "SET_MOVIES", payload: Object };
 type setMovieFlow = { type: "SET_MOVIE", payload: Object };
@@ -20,6 +20,7 @@ export default function reducer(state: State = initialState, action: Action): St
       return {
         ...state,
         films: List(action.payload),
+        filmsLength: List(action.payload).size,
       };
 
     case SET_MOVIE:

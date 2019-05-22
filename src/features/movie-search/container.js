@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import queryString from 'query-string';
 import * as Action from '../common/actions';
 import { getVisibleFilmsLength } from '../../core/store/selectors';
-import MovieSearchModule from './component';
+import MovieSearchComponent from './component';
 
 type Props = {
   setMoviesParams: Function,
@@ -37,7 +37,7 @@ class MovieSearchContainer extends Component<Props> {
 
   render() {
     const { filmsLength } = this.props;
-    return <MovieSearchModule filmsLength={filmsLength} />;
+    return <MovieSearchComponent filmsLength={filmsLength} />;
   }
 }
 
