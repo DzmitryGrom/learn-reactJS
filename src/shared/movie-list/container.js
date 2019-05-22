@@ -19,7 +19,6 @@ class MovieListContainer extends PureComponent<Props> {
 
     render() {
       const { films } = this.props;
-
       return (
         <MovieList films={films} onMovieClick={this.handleClick} />
       );

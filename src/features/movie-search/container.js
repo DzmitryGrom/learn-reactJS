@@ -16,6 +16,7 @@ type Props = {
 };
 
 class MovieSearchContainer extends PureComponent<Props> {
+
   componentWillMount() {
     this.loadFilms();
   }

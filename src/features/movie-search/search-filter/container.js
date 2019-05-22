@@ -30,6 +30,8 @@ class FilterContainer extends PureComponent<Props, State> {
   textInput: any = React.createRef();
 
   componentDidMount() {
+    const { textInput } = this;
+    textInput.current.focus();
     const { location } = this.props;
     const url = location.search;
     const inputs = document.querySelectorAll('input[type=radio]');
