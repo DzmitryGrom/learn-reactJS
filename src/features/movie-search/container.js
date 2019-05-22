@@ -1,7 +1,7 @@
 // @flow
 
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import queryString from 'query-string';
@@ -15,7 +15,7 @@ type Props = {
   location: Object
 };
 
-class MovieSearchContainer extends Component<Props> {
+class MovieSearchContainer extends PureComponent<Props> {
   componentWillMount() {
     this.loadFilms();
   }

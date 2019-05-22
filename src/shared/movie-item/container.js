@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import MovieItem from './component';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   genres: Array<any>,
 };
 
-class MovieItemContainer extends Component<Props> {
+class MovieItemContainer extends PureComponent<Props> {
   handleClick = () => {
     const { onMovieClick, id } = this.props;
     onMovieClick(id);

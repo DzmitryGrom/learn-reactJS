@@ -1,7 +1,7 @@
 // @flow
 
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as Action from '../common/actions';
@@ -16,7 +16,7 @@ type Props = {
   filmId: string,
 };
 
-class MovieDetailContainer extends Component<Props> {
+class MovieDetailContainer extends PureComponent<Props> {
   componentWillMount() {
     this.loadFilm();
   }

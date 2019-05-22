@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import { filmsSelector } from '../../core/store/selectors';
 import MovieList from './component';
@@ -9,7 +9,7 @@ type Props = {
   films: Array<any>,
 };
 
-class MovieListContainer extends Component<Props> {
+class MovieListContainer extends PureComponent<Props> {
     handleClick = (id) => {
       const { history } = this.props;
       history.push({

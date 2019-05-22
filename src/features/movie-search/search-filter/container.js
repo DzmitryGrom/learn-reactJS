@@ -1,7 +1,7 @@
 // @flow
 
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { getVisibleFilmsLength } from '../../../core/store/selectors';
@@ -20,7 +20,7 @@ type State = {
 };
 
 
-class FilterContainer extends Component<Props, State> {
+class FilterContainer extends PureComponent<Props, State> {
   state = {
     valueInput: '',
     searchName: '',
