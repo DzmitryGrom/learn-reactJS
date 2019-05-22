@@ -1,12 +1,19 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import styles from './component.less';
+
+type Props = {
+  poster: string,
+  title: string,
+  release: string,
+  genres: Array<any>,
+  onMovieClick: Function,
+};
 
 const MovieItem = ({
   poster, title, release, genres, onMovieClick,
-}) => (
-  <div onClick={onMovieClick} className={styles.movieItem}>
+}: Props) => (
+  <div onClick={onMovieClick} onKeyDown={onMovieClick} className={styles.movieItem} role="presentation">
     <div style={{ backgroundImage: `url(${poster})` }} className={styles.movieItem__img} />
     <div className={styles.movieItem__info}>
       <div>
@@ -24,20 +31,5 @@ const MovieItem = ({
     </div>
   </div>
 );
-
-MovieItem.propTypes = {
-  poster: PropTypes.string,
-  title: PropTypes.string,
-  release: PropTypes.string,
-  genres: PropTypes.arrayOf(PropTypes.string),
-  onMovieClick: PropTypes.func.isRequired,
-};
-
-MovieItem.defaultProps = {
-  poster: null,
-  title: null,
-  release: null,
-  genres: null,
-};
 
 export default MovieItem;

@@ -1,8 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const common = require('./webpack.config.common');
 
 const isDevMod = process.env.NODE_ENV === 'development';
@@ -10,7 +10,6 @@ const isDevMod = process.env.NODE_ENV === 'development';
 module.exports = merge(common, {
   name: 'client',
   target: 'web',
-
   entry: [
     isDevMod && 'webpack-hot-middleware/client',
     './src/index.js',
@@ -20,9 +19,9 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.less$/,
-        include: /src/,
+        exclude: /node_modules/,
         use: [
-          isDevMod ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDevMod ? 'style-loader' : ExtractCssChunks.loader,
           {
             loader: 'css-loader',
             options: {
@@ -39,12 +38,13 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    !isDevMod && new CleanWebpackPlugin('./dist', { root: path.resolve(__dirname, '../') }),
+    !isDevMod && new CleanWebpackPlugin('./public', { root: path.resolve(__dirname, '../') }),
     isDevMod && new webpack.HotModuleReplacementPlugin(),
-
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-    }),
+    new ExtractCssChunks(
+      {
+        filename: '[name].css',
+      },
+    ),
 
   ].filter(Boolean),
 });

@@ -1,12 +1,7 @@
-const Loadable = require('react-loadable');
 const app = require('./app');
 
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8000;
 
-Loadable.preloadAll().then(() => {
-  app.listen(port, () => {
-    console.log('Running...')
-  })
-}).catch(err => {
-  console.log(err);
-});
+app.listen(port, () => {
+  console.log(`Express listening on port ${port}`);
+})

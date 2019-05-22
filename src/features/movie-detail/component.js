@@ -1,17 +1,22 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './component.less';
 import Logo from '../../shared/logo';
 import MovieFooter from '../../shared/footer';
 import MovieList from '../../shared/movie-list';
 import Button from '../../shared/button/index';
 
-const MovieDetailComponent = ({ selectFilm, onButtonClick }) => (
+type Props = {
+  selectFilm: Object,
+  onButtonClick: Function,
+};
 
+const MovieDetailComponent = ({ selectFilm, onButtonClick }: Props) => (
   <div className={styles.movieDetail}>
     <div className={styles.movieDetail__header}>
       <Logo />
-      <Button selector="btnSearch" text="search" modifier="white" size="big" onButtonClick={onButtonClick} />
+      <Button selector="btnSearch" text="search" color="deeppink" backgroundColor="white" width="100px" onButtonClick={onButtonClick} />
       {selectFilm ? (
         <div className={styles.movieDetail__target}>
           <div className={styles.movieDetail__cover} style={{ backgroundImage: `url(${selectFilm.poster_path})` }} />
@@ -42,14 +47,5 @@ const MovieDetailComponent = ({ selectFilm, onButtonClick }) => (
     <MovieFooter />
   </div>
 );
-
-MovieDetailComponent.defaultProps = {
-  selectFilm: null,
-};
-
-MovieDetailComponent.propTypes = {
-  selectFilm: PropTypes.objectOf(PropTypes.any),
-  onButtonClick: PropTypes.func.isRequired,
-};
 
 export default MovieDetailComponent;

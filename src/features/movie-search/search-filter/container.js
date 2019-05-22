@@ -1,57 +1,65 @@
+// @flow
+
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { getVisibleFilmsLength } from '../../../core/store/selectors';
 import FilterComponent from './component';
 
-class FilterContainer extends Component {
-  static propTypes = {
-    filmsLength: PropTypes.number,
-    history: PropTypes.objectOf(PropTypes.any).isRequired,
-    location: PropTypes.objectOf(PropTypes.any).isRequired,
+type Props = {
+  filmsLength: number,
+  history: Object,
+  location: Object,
+};
+
+type State = {
+  valueInput: string,
+  searchName: string,
+  sortBy: string,
+};
+
+
+class FilterContainer extends Component<Props, State> {
+  state = {
+    valueInput: '',
+    searchName: '',
+    sortBy: '',
   };
 
-  state = {
-    valueInput: false,
-    searchName: false,
-    sortBy: false,
-  };
+  textInput: any = React.createRef();
 
   componentDidMount() {
-    this.textInput.focus();
     const { location } = this.props;
     const url = location.search;
     const inputs = document.querySelectorAll('input[type=radio]');
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; i += 1) {
       if (url.includes(inputs[i].id)) {
         inputs[i].setAttribute('checked', 'true');
       }
     }
   }
 
-  getInputRef = (node) => {
-    this.textInput = node;
-  };
-
   handleButtonClick = () => {
+    const { textInput } = this;
     this.setState({
-      valueInput: this.textInput.value,
+      valueInput: textInput.current.value,
     });
     const { searchName, sortBy } = this.state;
     const { history } = this.props;
-    if (this.textInput.value !== '') {
+    const val = textInput.current.value;
+
+    if (val !== '') {
       if (!sortBy) {
-        history.push(`/search/Search?search=${this.textInput.value}&searchBy=${searchName}`);
+        history.push(`/search/Search?search=${val}&searchBy=${searchName}`);
       } else {
-        history.push(`/search/Search?sortBy=${sortBy}&sortOrder=desc&search=${this.textInput.value}&searchBy=${searchName}`);
+        history.push(`/search/Search?sortBy=${sortBy}&sortOrder=desc&search=${val}&searchBy=${searchName}`);
       }
     }
   };
 
   handleButtonClickSearch = (event) => {
-    this.setState({ searchName: event.target.title });
+    this.setState({ searchName: event.target.id });
   };
 
   handleButtonClickSort = (event) => {
@@ -66,7 +74,7 @@ class FilterContainer extends Component {
     }
     return (
       <FilterComponent
-        getInputRef={this.getInputRef}
+        getInputRef={this.textInput}
         onButtonClick={this.handleButtonClick}
         onButtonClickSearch={this.handleButtonClickSearch}
         onButtonClickSort={this.handleButtonClickSort}

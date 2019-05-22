@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import MovieItem from './component';
 
-class MovieItemContainer extends Component {
-  static propTypes = {
-    onMovieClick: PropTypes.func.isRequired,
-    id: PropTypes.number.isRequired,
-    release_date: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  };
+type Props = {
+  onMovieClick: Function,
+  id: number,
+  release_date: string,
+  title: string,
+  poster_path: string,
+  genres: Array<any>,
+};
 
+class MovieItemContainer extends Component<Props> {
   handleClick = () => {
     const { onMovieClick, id } = this.props;
     onMovieClick(id);
