@@ -1,8 +1,13 @@
+// @flow
+
 import React from 'react';
 
-import PropTypes from 'prop-types';
+type Props = {
+  error: Object,
+  errorInfo: Object,
+};
 
-const ErrorBoundaryComponent = ({ error, errorInfo }) => (
+const ErrorBoundaryComponent = ({ error, errorInfo }: Props) => (
   <div id="errorBoundary">
     <h2 style={{ color: 'red' }}>Something went wrong.</h2>
     <details style={{ whiteSpace: 'pre-wrap', color: 'red' }}>
@@ -13,14 +18,5 @@ const ErrorBoundaryComponent = ({ error, errorInfo }) => (
   </div>
 );
 
-ErrorBoundaryComponent.propTypes = {
-  error: PropTypes.objectOf(PropTypes.shape({})).isRequired,
-  errorInfo: PropTypes.any,
-};
-
-ErrorBoundaryComponent.defaultProps = {
-  error: null,
-  errorInfo: null,
-};
 
 export default ErrorBoundaryComponent;

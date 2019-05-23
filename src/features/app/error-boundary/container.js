@@ -1,19 +1,24 @@
-import React, { Component } from 'react';
+// @flow
 
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import ErrorBoundaryComponent from './component';
 
-class ErrorBoundaryContainer extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-  };
+type Props = {
+  children: Object,
+};
 
+type State = {
+  error: Object,
+  errorInfo: Object,
+};
+
+class ErrorBoundaryContainer extends Component<Props, State> {
   state = {
     error: null,
     errorInfo: null,
   };
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: Object) {
     this.setState({
       error,
       errorInfo,

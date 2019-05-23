@@ -6,21 +6,21 @@ import { API_HOST, API_FILMS } from '../../config';
 
 axios.defaults.baseURL = API_HOST + API_FILMS;
 
+
 export function* searchFilms(action) {
-  const response = yield axios({params: action.payload});
+  const response = yield axios({ params: action.payload });
   const films = yield response.data.data;
 
   yield put(act.setMovies(films));
-};
+}
 
 export function* getFilmWithId(action) {
-  const response = yield axios('/' + action.payload);
+  const response = yield axios(`/${action.payload}`);
   const film = yield response.data;
-  let films = [];
   if (film.genres && film.genres.length) {
-    films = yield axios(`?search=${film.genres[0]}&searchBy=genres`);
+    const films = yield axios(`?search=${film.genres[0]}&searchBy=genres`);
     yield put(act.setMovies(films.data.data));
-  };
+  }
   yield put(act.setMovie(film));
 }
 /**/
@@ -37,4 +37,4 @@ export function* filmsSaga() {
     watchFetchSearchFilms(),
     watchFetchSearchFilmWithId(),
   ]);
-};
+}

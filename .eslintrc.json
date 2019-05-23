@@ -8,6 +8,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
+
   "parser": "babel-eslint",
 
   "plugins": [
@@ -16,6 +17,7 @@
     "import"
   ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "camelcase": [1, {"properties": "never"}]
   }
 }

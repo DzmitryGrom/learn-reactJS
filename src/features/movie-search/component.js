@@ -1,13 +1,17 @@
+// @flow
+
 import React from 'react';
-import Loadable from 'react-loadable';
-import PropTypes from 'prop-types';
 import styles from './component.less';
 import Logo from '../../shared/logo';
 import Filter from './search-filter';
 import MovieFooter from '../../shared/footer';
 import MovieList from '../../shared/movie-list';
 
-const MovieSearchComponent = ({ filmsLength }) => (
+type Props = {
+  filmsLength: number,
+};
+
+const MovieSearchComponent = ({ filmsLength }: Props) => (
   <div className={styles.movieSearch}>
     <div className={styles.movieSearch__header}>
       <Logo />
@@ -24,13 +28,5 @@ const MovieSearchComponent = ({ filmsLength }) => (
     <MovieFooter />
   </div>
 );
-
-MovieSearchComponent.defaultProps = {
-  filmsLength: null,
-};
-
-MovieSearchComponent.propTypes = {
-  filmsLength: PropTypes.number,
-};
 
 export default MovieSearchComponent;

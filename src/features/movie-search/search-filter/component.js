@@ -1,12 +1,21 @@
-import React from 'react';
+// @flow
 
-import PropTypes from 'prop-types';
-import Button from '../../../shared/button/index';
+import React from 'react';
+import Button from '../../../shared/button';
+import RadioButton from '../../../shared/radio-button';
 import styles from './component.less';
+
+type Props = {
+  getInputRef: Object,
+  onButtonClick: Function,
+  onButtonClickSort: Function,
+  onButtonClickSearch: Function,
+  filmsLength: number,
+}
 
 const FilterComponent = ({
   getInputRef, onButtonClick, onButtonClickSort, onButtonClickSearch, filmsLength,
-}) => (
+}: Props) => (
   <div className={styles.filter}>
     <div className={styles.filter__top}>
       <span className={styles.filter__label}>Find your movie</span>
@@ -18,41 +27,17 @@ const FilterComponent = ({
       />
       <div className={styles.filter__buttons}>
         <span className={styles.filter__buttonsLabel}>search by</span>
-        <label htmlFor="title">
-          <input type="radio" id="title" name="search" title="title" onClick={onButtonClickSearch} />
-          <span className={styles.filter__btn}>title</span>
-        </label>
-        <label htmlFor="genres">
-          <input type="radio" id="genres" name="search" title="genres" onClick={onButtonClickSearch} />
-          <span className={styles.filter__btn}>genre</span>
-        </label>
+        <RadioButton selector="title" name="search" val="title" onButtonClick={onButtonClickSearch} />
+        <RadioButton selector="genres" name="search" val="genre" onButtonClick={onButtonClickSearch} />
       </div>
-      <Button selector="btnSearch" text="search" modifier="pink" size="big" onButtonClick={onButtonClick} />
+      <Button selector="btnSearch" text="search" color="white" backgroundColor="deeppink" width="200px" onButtonClick={onButtonClick} />
     </div>
     <div style={{ display: !filmsLength ? 'none' : null }} className={styles.filter__btns}>
       <span id="btnSortBy" className={styles.filter__value}>Sort by</span>
-      <label htmlFor="release_date">
-        <input type="radio" id="release_date" name="sort" title="release" onClick={onButtonClickSort} />
-        <span className={styles.filter__value}>release date</span>
-      </label>
-      <label htmlFor="vote_average">
-        <input type="radio" id="vote_average" title="rating" name="sort" onClick={onButtonClickSort} />
-        <span className={styles.filter__value}>rating</span>
-      </label>
+      <RadioButton selector="release_date" name="sort" val="release date" onButtonClick={onButtonClickSort} />
+      <RadioButton selector="vote_average" name="sort" val="rating" onButtonClick={onButtonClickSort} />
     </div>
   </div>
 );
-
-FilterComponent.propTypes = {
-  getInputRef: PropTypes.func.isRequired,
-  onButtonClick: PropTypes.func.isRequired,
-  onButtonClickSort: PropTypes.func.isRequired,
-  onButtonClickSearch: PropTypes.func.isRequired,
-  filmsLength: PropTypes.number,
-};
-
-FilterComponent.defaultProps = {
-  filmsLength: 0,
-};
 
 export default FilterComponent;

@@ -1,40 +1,39 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import injectSheet from 'react-jss';
 
-import styles from './component.less';
+type Props = {
+  classes: string,
+  text: string,
+  onButtonClick: Function,
+  selector: string,
+};
+
+const styles = {
+  button: {
+    border: 'none',
+    textTransform: 'uppercase',
+    fontSize: '10px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    borderRadius: '2px',
+    cursor: 'pointer',
+    backgroundColor: props => props.backgroundColor,
+    color: props => props.color,
+    width: props => props.width,
+  },
+};
 
 const Button = ({
-  modifier, text, size, onButtonClick, selector,
-}) => (
+  classes, text, onButtonClick, selector,
+}: Props) => (
   <input
     onClick={onButtonClick}
     type="button"
     value={text}
     id={selector}
-    className={classNames(styles.btn,
-      modifier === 'pink' && styles.btn_pink,
-      modifier === 'gray' && styles.btn_gray,
-      modifier === 'white' && styles.btn_white,
-      size === 'big' ? styles.btn_big : null)}
+    className={classes.button}
   />
 );
 
-Button.propTypes = {
-  modifier: PropTypes.string,
-  text: PropTypes.string,
-  size: PropTypes.string,
-  onButtonClick: PropTypes.func,
-  selector: PropTypes.string,
-};
-
-Button.defaultProps = {
-  modifier: 'gray',
-  text: '',
-  size: '',
-  onButtonClick: null,
-  selector: null,
-};
-
-export default Button;
+export default injectSheet(styles)(Button);

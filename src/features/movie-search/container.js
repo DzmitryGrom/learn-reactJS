@@ -1,22 +1,21 @@
+// @flow
+
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import * as Action from '../common/actions';
 import { getVisibleFilmsLength } from '../../core/store/selectors';
 import MovieSearchComponent from './component';
 
-class MovieSearchContainer extends Component {
-  static propTypes = {
-    setMoviesParams: PropTypes.func.isRequired,
-    filmsLength: PropTypes.number,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-      search: PropTypes.string,
-    }).isRequired,
-  };
+type Props = {
+  setMoviesParams: Function,
+  filmsLength: number,
+  location: Object
+};
+
+class MovieSearchContainer extends PureComponent<Props> {
 
   componentWillMount() {
     this.loadFilms();
@@ -39,13 +38,9 @@ class MovieSearchContainer extends Component {
 
   render() {
     const { filmsLength } = this.props;
-    return <MovieSearchComponent filmsLength={filmsLength} />
+    return <MovieSearchComponent filmsLength={filmsLength} />;
   }
 }
-
-MovieSearchContainer.defaultProps = {
-  filmsLength: null,
-};
 
 const mapStateToProps = state => ({
   filmsLength: getVisibleFilmsLength(state),

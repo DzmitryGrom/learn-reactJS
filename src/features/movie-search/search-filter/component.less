@@ -1,21 +1,8 @@
 .filter {
-  label {
-    cursor: pointer;
-  }
-  input[type=radio]{
-    display: none;
-    &[name="sort"]{
-      &:checked + span {
-        color: deeppink;
-      }
-    }
-    &[name="search"] {
-      &:checked + span {
-        background-color: white;
-        color: deeppink;
-      }
-    }
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   &__top {
     width: 100%;
     display: flex;
@@ -28,34 +15,8 @@
     z-index: 2;
     right: 50px;
     bottom: -35px;
-  }
-  &__btn {
-    background-color: slategray;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: none;
-    text-transform: uppercase;
-    font-size: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 2px;
-  }
-  &__value {
     font-weight: bold;
-    margin-right: 20px;
   }
-  &__rating, &__release {
-    cursor: pointer;
-  }
-  &__rating {
-    font-weight: bold;
-    margin-left: 50px;
-  }
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
   &__label {
     color: white;
     text-transform: uppercase;
@@ -86,6 +47,7 @@
     align-items: center;
   }
   &__buttonsLabel {
+    white-space: nowrap;
     font-size: 15px;
     text-transform: uppercase;
     color: white;

@@ -1,5 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 
 const isDevMod = process.env.NODE_ENV === 'development';
 
@@ -14,18 +14,16 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
 
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        }
+        use: 'babel-loader',
       },
     ],
   },
